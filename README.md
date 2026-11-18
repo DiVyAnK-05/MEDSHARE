@@ -260,9 +260,9 @@ medshare/
 
 | Team Member | Project Role | Contact Phone | Email Address |
 | :--- | :--- | :--- | :--- |
-| **Jha Divyank** | **Lead Creator & Full-Stack Engineer** (Node.js/Express, MongoDB Schemas, JWT Auth, Safety Engine) | `+91 95074 38151` | `jhadivyank7@gmail.com` |
-| **Dhwani Bansal** | **Co-Creator & Frontend/UI Lead** (HTML5 Semantic Templates, CSS Design Tokens, Ladder Taskbar, Accessibility) | `+91 84450 46646` | `2628mca0300@kiet.edu` |
-| **Drishti Tyagi** | **Co-Creator & Safety/Compliance Lead** (Drug Scheduling & Blacklist, 90-Day Shelf-Life Rules, NGO Workflows) | `+91 76689 52077` | `2628mca0010@kiet.edu` |
+| **Divyank** | **Lead Creator & Full-Stack Engineer** (Node.js/Express, MongoDB Schemas, JWT Auth, Safety Engine) | `jhadivyank7@gmail.com` |
+| **Dhwani Bansal** | **Co-Creator & Frontend/UI Lead** (HTML5 Semantic Templates, CSS Design Tokens, Ladder Taskbar, Accessibility) | `2628mca0300@kiet.edu` |
+| **Drishti Tyagi** | **Co-Creator & Safety/Compliance Lead** (Drug Scheduling & Blacklist, 90-Day Shelf-Life Rules, NGO Workflows) | `2628mca0010@kiet.edu` |
 
 ---
 
