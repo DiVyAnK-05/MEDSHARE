@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy &amp; Data Protection | MedShare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container navbar">
+      <a href="/index.html" class="brand-logo">
+        <div class="brand-icon-box" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+            <path d="m8.5 8.5 7 7"/>
+          </svg>
+        </div>
+        <span>MedShare</span>
+      </a>
+
+      <nav class="nav-menu" id="main-nav-links">
+        <a href="/pages/browse.html" class="nav-link">Find Medicine</a>
+        <a href="/pages/donate.html" class="nav-link">Donate Medicine</a>
+        <a href="/pages/safety.html" class="nav-link">Safety Rules</a>
+      </nav>
+
+      <div class="nav-actions" id="navbar-auth-actions"></div>
+    </div>
+  </header>
+
+  <main id="main-content" class="section-padding">
+    <div class="container" style="max-width: 800px;">
+      <h1 style="font-size:var(--font-size-3xl); margin-bottom:12px;">Privacy Policy</h1>
+      <p style="font-size:var(--font-size-sm); color:var(--color-text-muted); margin-bottom:32px;">
+        Last updated: November 2026 &bull; MedShare Healthcare Data Protection Charter
+      </p>
+
+      <div class="card" style="padding:36px; line-height:1.7; font-size:15px; color:var(--color-text-main); display:flex; flex-direction:column; gap:24px;">
+        <section>
+          <h2 style="font-size:var(--font-size-xl); margin-bottom:8px; color:var(--color-midnight-navy);">1. Healthcare Data Minimization</h2>
+          <p>MedShare collects only the bare minimum information required to securely coordinate medicine donations and drop-offs. We do not collect medical history, insurance numbers, or government health IDs.</p>
+        </section>
+
+        <section>
+          <h2 style="font-size:var(--font-size-xl); margin-bottom:8px; color:var(--color-midnight-navy);">2. Strict Contact Masking</h2>
+          <p>Personal phone numbers, full names, and exact addresses are never visible on public directory pages. In the public medicine directory, only general localities (such as "KIET Campus" or "Vasundhara") are displayed.</p>
+        </section>
+
+        <section>
+          <h2 style="font-size:var(--font-size-xl); margin-bottom:8px; color:var(--color-midnight-navy);">3. Password &amp; Session Security</h2>
+          <p>All passwords are encrypted with bcrypt (10 rounds of salt) before database storage and are never retrievable in plain text. User sessions use JSON Web Tokens (JWT) stored exclusively in secure, httpOnly cookies protected against cross-site scripting (XSS).</p>
+        </section>
+
+        <section>
+          <h2 style="font-size:var(--font-size-xl); margin-bottom:8px; color:var(--color-midnight-navy);">4. No Commercial Sharing</h2>
+          <p>MedShare is a non-profit college project. We do not sell, rent, or monetize your contact or donation records to third-party advertisers, insurance providers, or pharmaceutical corporations.</p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { getCurrentUser, setupNavbar } from '/js/auth.js';
+    import { applyAccessibilitySettings } from '/js/ui.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await getCurrentUser();
+      setupNavbar(user);
+      if (user?.settings) applyAccessibilitySettings(user.settings);
+    });
+  </script>
+</body>
+</html>

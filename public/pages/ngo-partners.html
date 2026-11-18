@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NGO Partners &amp; Collection Desks | MedShare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container navbar">
+      <a href="/index.html" class="brand-logo">
+        <div class="brand-icon-box" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+            <path d="m8.5 8.5 7 7"/>
+          </svg>
+        </div>
+        <span>MedShare</span>
+      </a>
+
+      <nav class="nav-menu" id="main-nav-links">
+        <a href="/pages/browse.html" class="nav-link">Find Medicine</a>
+        <a href="/pages/donate.html" class="nav-link">Donate Medicine</a>
+        <a href="/pages/ngo-partners.html" class="nav-link active">NGO Partners</a>
+        <a href="/pages/safety.html" class="nav-link">Safety Rules</a>
+      </nav>
+
+      <div class="nav-actions" id="navbar-auth-actions"></div>
+    </div>
+  </header>
+
+  <main id="main-content" class="section-padding">
+    <div class="container">
+      <div style="text-align:center; max-width:760px; margin:0 auto 48px auto;">
+        <span class="badge badge-verified" style="margin-bottom:8px;">Verified Distribution Mesh</span>
+        <h1 style="font-size:var(--font-size-3xl); margin-bottom:12px;">Partner NGOs &amp; Drop-off Desks</h1>
+        <p style="font-size:var(--font-size-base); color:var(--color-text-muted);">
+          MedShare routes medicine redistribution exclusively through registered non-governmental organizations and student volunteer desks in the KIET Ghaziabad region.
+        </p>
+      </div>
+
+      <!-- Verified NGOs List -->
+      <div id="ngo-list-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:24px; margin-bottom:64px;">
+        <div style="grid-column:1/-1; text-align:center; padding:48px 0; color:var(--color-text-muted);">
+          Loading verified NGO partners from database...
+        </div>
+      </div>
+
+      <!-- Become a Partner Application Form -->
+      <div id="apply" class="card" style="padding:40px; max-width:800px; margin:0 auto; border-top:5px solid var(--color-medical-teal);">
+        <div style="text-align:center; margin-bottom:32px;">
+          <h2 style="font-size:var(--font-size-2xl); margin-bottom:8px;">Become a Partner NGO</h2>
+          <p style="font-size:var(--font-size-sm); color:var(--color-text-muted);">
+            Join the MedShare redistribution pilot in western UP. Verified partner organizations receive priority allocation of unexpired community medicine donations for free clinics.
+          </p>
+        </div>
+
+        <form id="ngo-apply-form">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div class="form-group">
+              <label for="orgName" class="form-label">Organization Legal Name <span class="required">*</span></label>
+              <input type="text" id="orgName" class="form-control" placeholder="e.g. Pehchaan Care Foundation" required>
+            </div>
+
+            <div class="form-group">
+              <label for="regNumber" class="form-label">NGO / Society Registration No. <span class="required">*</span></label>
+              <input type="text" id="regNumber" class="form-control" placeholder="e.g. REG-UP-2022-XXXX" required>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
+            <div class="form-group">
+              <label for="contactPerson" class="form-label">Lead Contact Person <span class="required">*</span></label>
+              <input type="text" id="contactPerson" class="form-control" placeholder="Name of officer" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label">Official Email <span class="required">*</span></label>
+              <input type="email" id="email" class="form-control" placeholder="contact@ngo.org" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone" class="form-label">Phone Number <span class="required">*</span></label>
+              <input type="tel" id="phone" class="form-control" placeholder="+91 98112 XXXXX" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="operatingAreas" class="form-label">Operating Areas / Districts <span class="required">*</span></label>
+            <input type="text" id="operatingAreas" class="form-control" placeholder="e.g. Muradnagar, Ghaziabad, Modinagar, Raj Nagar" required>
+            <div class="form-helper">Separate multiple zones with commas</div>
+          </div>
+
+          <div class="form-group">
+            <label for="officialAddress" class="form-label">Registered Office / Dispensary Address <span class="required">*</span></label>
+            <textarea id="officialAddress" class="form-control" rows="2" placeholder="Full street address in Ghaziabad / UP..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="missionStatement" class="form-label">Healthcare Mission &amp; Capacity</label>
+            <textarea id="missionStatement" class="form-control" rows="3" placeholder="Briefly describe your community clinic outreach, doctor availability, and storage capabilities..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full btn-lg" id="submit-btn">
+            Submit Partner Application for Review
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { API } from '/js/api.js';
+    import { getCurrentUser, setupNavbar } from '/js/auth.js';
+    import { showToast, applyAccessibilitySettings } from '/js/ui.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await getCurrentUser();
+      setupNavbar(user);
+      if (user?.settings) applyAccessibilitySettings(user.settings);
+
+      loadNgos();
+      setupApplicationForm();
+    });
+
+    async function loadNgos() {
+      const container = document.getElementById('ngo-list-container');
+      try {
+        const res = await API.ngos.getAll();
+        const ngos = res.data?.ngos || [];
+
+        if (ngos.length === 0) {
+          container.innerHTML = `
+            <div style="grid-column:1/-1;" class="card">
+              <p style="text-align:center;">No verified NGO partners loaded yet.</p>
+            </div>
+          `;
+          return;
+        }
+
+        let html = '';
+        ngos.forEach(ngo => {
+          let pointsHtml = '';
+          if (ngo.collectionPoints && ngo.collectionPoints.length) {
+            ngo.collectionPoints.forEach(p => {
+              pointsHtml += `
+                <div style="background:var(--color-cloud-white); padding:10px 14px; border-radius:var(--radius-sm); border-left:3px solid var(--color-medical-teal); margin-bottom:8px;">
+                  <strong style="color:var(--color-midnight-navy); font-size:13px; display:block;">📍 ${p.name}</strong>
+                  <div style="font-size:12px; color:var(--color-text-muted); margin:2px 0;">${p.address}</div>
+                  <div style="font-size:11px; color:var(--color-text-light);">Contact: ${p.contactPerson} &bull; ${p.phone}</div>
+                </div>
+              `;
+            });
+          }
+
+          html += `
+            <div class="card card-hover" style="display:flex; flex-direction:column;">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+                <span class="badge badge-verified">✓ Verified NGO</span>
+                <span style="font-size:11px; font-weight:600; color:var(--color-text-muted);">${ngo.registrationNumber}</span>
+              </div>
+
+              <h2 style="font-size:var(--font-size-xl); margin-bottom:6px;">${ngo.name}</h2>
+              <div style="font-size:13px; color:var(--color-medical-teal); font-weight:600; margin-bottom:16px;">
+                Coverage: ${ngo.area}
+              </div>
+
+              <div style="margin-bottom:16px;">
+                <div style="font-size:12px; font-weight:700; color:var(--color-deep-slate); text-transform:uppercase; margin-bottom:8px;">
+                  Collection &amp; Drop-off Desks:
+                </div>
+                ${pointsHtml || '<p style="font-size:12px; color:var(--color-text-muted);">Main Office Drop-off</p>'}
+              </div>
+
+              <div style="margin-top:auto; padding-top:16px; border-top:1px solid var(--color-border-subtle); font-size:12px; color:var(--color-text-muted);">
+                <div>🕒 <strong>Hours:</strong> ${ngo.workingHours}</div>
+                <div style="margin-top:4px;">✉️ ${ngo.contact?.email} &bull; 📞 ${ngo.contact?.phone}</div>
+              </div>
+            </div>
+          `;
+        });
+
+        container.innerHTML = html;
+      } catch (err) {
+        container.innerHTML = `<div style="grid-column:1/-1;" class="alert-banner alert-danger">Error loading NGOs: ${err.message}</div>`;
+      }
+    }
+
+    function setupApplicationForm() {
+      const form = document.getElementById('ngo-apply-form');
+      const submitBtn = document.getElementById('submit-btn');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const organizationName = document.getElementById('orgName').value.trim();
+        const registrationNumber = document.getElementById('regNumber').value.trim();
+        const contactPerson = document.getElementById('contactPerson').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const operatingAreas = document.getElementById('operatingAreas').value.trim();
+        const officialAddress = document.getElementById('officialAddress').value.trim();
+        const missionStatement = document.getElementById('missionStatement').value.trim();
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting Application...';
+
+        try {
+          const res = await API.ngos.apply({
+            organizationName,
+            registrationNumber,
+            contactPerson,
+            email,
+            phone,
+            operatingAreas,
+            officialAddress,
+            missionStatement
+          });
+
+          showToast(res.message || 'NGO application submitted successfully!', 'success', 5000);
+          form.reset();
+        } catch (err) {
+          showToast(err.message || 'Failed to submit application', 'error');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Partner Application for Review';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

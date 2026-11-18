@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medicine Safety Guidelines | MedShare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container navbar">
+      <a href="/index.html" class="brand-logo">
+        <div class="brand-icon-box" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+            <path d="m8.5 8.5 7 7"/>
+          </svg>
+        </div>
+        <span>MedShare</span>
+      </a>
+
+      <nav class="nav-menu" id="main-nav-links">
+        <a href="/pages/browse.html" class="nav-link">Find Medicine</a>
+        <a href="/pages/donate.html" class="nav-link">Donate Medicine</a>
+        <a href="/pages/ngo-partners.html" class="nav-link">NGO Partners</a>
+        <a href="/pages/safety.html" class="nav-link active">Safety Rules</a>
+      </nav>
+
+      <div class="nav-actions" id="navbar-auth-actions"></div>
+    </div>
+  </header>
+
+  <main id="main-content" class="section-padding">
+    <div class="container" style="max-width: 900px;">
+      <div style="text-align:center; margin-bottom:40px;">
+        <span class="badge badge-amber" style="margin-bottom:8px;">Zero Compromise</span>
+        <h1 style="font-size:var(--font-size-3xl); margin-bottom:12px;">Medicine Safety &amp; Regulatory Protocol</h1>
+        <p style="font-size:var(--font-size-base); color:var(--color-text-muted);">
+          Our strict standards guarantee that every redistributed medicine is unexpired, authentic, and completely safe.
+        </p>
+      </div>
+
+      <!-- Critical Warnings Callout Box -->
+      <div class="alert-banner alert-amber" style="margin-bottom:40px;">
+        <div style="font-size:14px; line-height:1.7;">
+          <h2 style="font-size:18px; margin-bottom:8px; color:var(--color-midnight-navy);">⚠️ Mandatory Medical &amp; Regulatory Disclaimers:</h2>
+          <ul style="padding-left:20px; display:flex; flex-direction:column; gap:6px;">
+            <li><strong>Never consume any medication without explicit doctor or licensed pharmacist advice.</strong></li>
+            <li><strong>MedShare is a community coordination platform</strong> and does NOT provide medical advice, prescriptions, diagnosis, or clinical treatments.</li>
+            <li><strong>Always inspect packaging and physical expiry dates</strong> before administration.</li>
+            <li>In compliance with Indian pharmaceutical regulations (Drugs and Cosmetics Act), peer-to-peer redistribution is facilitated strictly through verified NGOs, institutional drop desks, and licensed pharmacists.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Allowed vs Prohibited Grid -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-bottom:48px;">
+        <div class="card" style="border-top:5px solid var(--color-fresh-mint);">
+          <h2 style="color:var(--color-fresh-mint-dark); font-size:var(--font-size-xl); margin-bottom:16px;">
+            ✓ Permitted for Donation (Subject to Audit)
+          </h2>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:12px; font-size:14px;">
+            <li>✅ <strong>Unopened, Sealed Blister Packs:</strong> Strips with complete foil intact and no cut margins.</li>
+            <li>✅ <strong>Minimum 90 Days Shelf Life:</strong> Medicines with at least 3 months remaining before expiry date.</li>
+            <li>✅ <strong>Legible Batch &amp; Expiry:</strong> Printed details clearly legible on the foil or carton.</li>
+            <li>✅ <strong>Over-the-Counter (OTC) Essentials:</strong> Paracetamol, antacids, ORS, multivitamin supplements.</li>
+            <li>✅ <strong>First-Aid &amp; Antiseptics:</strong> Sealed bandages, povidone-iodine ointments with intact tamper seals.</li>
+            <li>✅ <strong>Stored Correctly:</strong> Kept in cool, dry conditions away from moisture or direct sunlight.</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-top:5px solid var(--color-danger);">
+          <h2 style="color:var(--color-danger); font-size:var(--font-size-xl); margin-bottom:16px;">
+            ✗ Strictly Prohibited on MedShare
+          </h2>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:12px; font-size:14px;">
+            <li>❌ <strong>Expired Medicines:</strong> Any drug near or past its printed expiration date.</li>
+            <li>❌ <strong>Opened, Cut, or Partial Strips:</strong> Loose tablets without sealed original blister pockets.</li>
+            <li>❌ <strong>Cold-Chain Items (Insulin, Vaccines):</strong> Products requiring continuous 2&deg;C - 8&deg;C refrigeration.</li>
+            <li>❌ <strong>Narcotics &amp; Schedule X Drugs:</strong> Sedatives, sleeping pills, opioid pain relievers (Tramadol, Alprazolam).</li>
+            <li>❌ <strong>Injectable Solutions &amp; Infusions:</strong> Ampoules, IV fluids, or chemotherapy items.</li>
+            <li>❌ <strong>Opened Liquid Syrups &amp; Suspensions:</strong> Unsealed syrups susceptible to bacterial contamination.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4-Step Verification Detail -->
+      <div class="card" style="padding:36px; margin-bottom:48px;">
+        <h2 style="font-size:var(--font-size-xl); margin-bottom:20px;">The MedShare Verification Standard</h2>
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div>
+            <strong style="color:var(--color-medical-teal); display:block; margin-bottom:4px;">1. Image Analysis &amp; Optical Audit</strong>
+            <p style="font-size:14px;">Our verification volunteers cross-reference uploaded photographs against manufacturer packaging templates to identify counterfeit or damaged strips.</p>
+          </div>
+          <div>
+            <strong style="color:var(--color-medical-teal); display:block; margin-bottom:4px;">2. 90-Day Algorithmic Guard</strong>
+            <p style="font-size:14px;">Our server engine mathematically rejects any listing with less than 90 days of shelf life. This ensures ample buffer time for verification, collection, and patient use.</p>
+          </div>
+          <div>
+            <strong style="color:var(--color-medical-teal); display:block; margin-bottom:4px;">3. Controlled Drug Blacklisting</strong>
+            <p style="font-size:14px;">Automated token screening blocks prohibited salt names, psychiatric medications, and cold-chain biologics from entering the directory.</p>
+          </div>
+          <div>
+            <strong style="color:var(--color-medical-teal); display:block; margin-bottom:4px;">4. Physical NGO Hand-over Inspection</strong>
+            <p style="font-size:14px;">Before a requested medicine is released to a patient, volunteer desk coordinators at KIET or partner NGOs physically inspect the blister seal for pinhole punctures or discoloration.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;">
+        <a href="/pages/donate.html" class="btn btn-primary btn-lg">Have Sealed Medicines? Donate Now</a>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { getCurrentUser, setupNavbar } from '/js/auth.js';
+    import { applyAccessibilitySettings } from '/js/ui.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await getCurrentUser();
+      setupNavbar(user);
+      if (user?.settings) applyAccessibilitySettings(user.settings);
+    });
+  </script>
+</body>
+</html>

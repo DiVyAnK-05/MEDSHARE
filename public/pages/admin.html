@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal &amp; Safety Audit | MedShare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner" style="background:#0B1F2A; border-bottom:1px solid #1F3A44;">
+    <div class="container navbar">
+      <a href="/index.html" class="brand-logo" style="color:#ffffff;">
+        <div class="brand-icon-box" style="background:var(--color-medical-teal);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+            <path d="m8.5 8.5 7 7"/>
+          </svg>
+        </div>
+        <span>MedShare</span>
+      </a>
+
+      <nav class="nav-menu" id="main-nav-links">
+        <a href="/pages/dashboard.html" class="nav-link" style="color:#b0c4de;">User Dashboard</a>
+        <a href="/pages/browse.html" class="nav-link" style="color:#b0c4de;">Public Directory</a>
+      </nav>
+
+      <div class="nav-actions" id="navbar-auth-actions"></div>
+    </div>
+  </header>
+
+  <main id="main-content" class="section-padding">
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; flex-wrap:wrap; gap:16px;">
+        <div>
+          <h1 style="font-size:var(--font-size-3xl);">Platform Administration &amp; Compliance</h1>
+          <p style="font-size:var(--font-size-sm); color:var(--color-text-muted);">
+            Platform Safety &amp; Verification Desk &bull; Administrator audit portal
+          </p>
+        </div>
+        <div style="display:flex; gap:10px;">
+          <button id="btn-refresh-admin" class="btn btn-secondary btn-sm">🔄 Refresh Data</button>
+        </div>
+      </div>
+
+      <!-- Stats Metric Cards -->
+      <div class="admin-stats-grid" id="stats-grid">
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon" style="background:var(--color-medical-teal-light); color:var(--color-medical-teal);">💊</div>
+          <div>
+            <div style="font-size:24px; font-weight:800;" id="stat-total-donations">0</div>
+            <div style="font-size:12px; color:var(--color-text-muted);">Total Listed Donations</div>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon" style="background:var(--color-amber-light); color:var(--color-amber-dark);">⏳</div>
+          <div>
+            <div style="font-size:24px; font-weight:800; color:var(--color-amber-dark);" id="stat-pending-donations">0</div>
+            <div style="font-size:12px; color:var(--color-text-muted);">Pending Verification</div>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon" style="background:var(--color-fresh-mint-light); color:var(--color-fresh-mint-dark);">✓</div>
+          <div>
+            <div style="font-size:24px; font-weight:800; color:var(--color-fresh-mint-dark);" id="stat-verified-donations">0</div>
+            <div style="font-size:12px; color:var(--color-text-muted);">Active Verified Stock</div>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon" style="background:#e0f2fe; color:#0369a1;">🤝</div>
+          <div>
+            <div style="font-size:24px; font-weight:800;" id="stat-active-requests">0</div>
+            <div style="font-size:12px; color:var(--color-text-muted);">Active Patient Requests</div>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon" style="background:#f3e8ff; color:#7e22ce;">👥</div>
+          <div>
+            <div style="font-size:24px; font-weight:800;" id="stat-total-users">0</div>
+            <div style="font-size:12px; color:var(--color-text-muted);">Registered Users</div>
+          </div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon" style="background:#fef3c7; color:#b45309;">📩</div>
+          <div>
+            <div style="font-size:24px; font-weight:800; color:#b45309;" id="stat-contact-messages">0</div>
+            <div style="font-size:12px; color:var(--color-text-muted);">Support Inquiries</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="dashboard-tabs" role="tablist">
+        <button class="dashboard-tab-btn active" id="tab-verify" role="tab" aria-selected="true" aria-controls="panel-verify">
+          🛡️ Verification Queue (<span id="count-pending-badge">0</span>)
+        </button>
+        <button class="dashboard-tab-btn" id="tab-all-donations" role="tab" aria-selected="false" aria-controls="panel-all-donations">
+          📦 All Donations Inventory
+        </button>
+        <button class="dashboard-tab-btn" id="tab-requests" role="tab" aria-selected="false" aria-controls="panel-requests">
+          📋 Request Management
+        </button>
+        <button class="dashboard-tab-btn" id="tab-users" role="tab" aria-selected="false" aria-controls="panel-users">
+          👥 Registered Users
+        </button>
+        <button class="dashboard-tab-btn" id="tab-ngos" role="tab" aria-selected="false" aria-controls="panel-ngos">
+          🏥 NGO Applications
+        </button>
+        <button class="dashboard-tab-btn" id="tab-reports" role="tab" aria-selected="false" aria-controls="panel-reports">
+          🚩 Safety Reports
+        </button>
+        <button class="dashboard-tab-btn" id="tab-inquiries" role="tab" aria-selected="false" aria-controls="panel-inquiries">
+          📩 Inquiries &amp; Messages (<span id="count-inquiries-badge">0</span>)
+        </button>
+      </div>
+
+      <!-- Panel 1: Verification Queue -->
+      <div id="panel-verify" role="tabpanel">
+        <div style="margin-bottom:16px;">
+          <h2 style="font-size:var(--font-size-xl);">Pending Safety Audit Queue</h2>
+          <p style="font-size:var(--font-size-sm); color:var(--color-text-muted);">Review packaging photos, batch numbers, and shelf life before approving medicines into public inventory.</p>
+        </div>
+        <div id="verify-queue-container"></div>
+      </div>
+
+      <!-- Panel 2: All Donations -->
+      <div id="panel-all-donations" role="tabpanel" style="display:none;">
+        <div style="margin-bottom:16px;">
+          <h2 style="font-size:var(--font-size-xl);">All Platform Donations</h2>
+        </div>
+        <div id="all-donations-container"></div>
+      </div>
+
+      <!-- Panel 3: Requests -->
+      <div id="panel-requests" role="tabpanel" style="display:none;">
+        <div style="margin-bottom:16px;">
+          <h2 style="font-size:var(--font-size-xl);">Community Medicine Requests</h2>
+          <p style="font-size:var(--font-size-sm); color:var(--color-text-muted);">Approve allocations and mark medicines handed over once received by beneficiaries.</p>
+        </div>
+        <div id="admin-requests-container"></div>
+      </div>
+
+      <!-- Panel 4: Users -->
+      <div id="panel-users" role="tabpanel" style="display:none;">
+        <div style="margin-bottom:16px;">
+          <h2 style="font-size:var(--font-size-xl);">User Directory &amp; Moderation</h2>
+        </div>
+        <div id="admin-users-container"></div>
+      </div>
+
+      <!-- Panel 5: NGO Applications -->
+      <div id="panel-ngos" role="tabpanel" style="display:none;">
+        <div style="margin-bottom:16px;">
+          <h2 style="font-size:var(--font-size-xl);">NGO Partner Applications</h2>
+        </div>
+        <div id="admin-ngos-container"></div>
+      </div>
+
+      <!-- Panel 6: Reports -->
+      <div id="panel-reports" role="tabpanel" style="display:none;">
+        <div style="margin-bottom:16px;">
+          <h2 style="font-size:var(--font-size-xl);">Reported Items &amp; Safety Flags</h2>
+        </div>
+        <div id="admin-reports-container"></div>
+      </div>
+
+      <!-- Panel 7: User & NGO Inquiries -->
+      <div id="panel-inquiries" role="tabpanel" style="display:none;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+          <div>
+            <h2 style="font-size:var(--font-size-xl);">User &amp; NGO Inquiries Inbox</h2>
+            <p style="font-size:var(--font-size-sm); color:var(--color-text-muted);">
+              Direct inquiries and messages submitted through the Contact form. The creator team can read questions and reply directly via email.
+            </p>
+          </div>
+          <button id="btn-refresh-inquiries" class="btn btn-secondary btn-sm">🔄 Refresh Inbox</button>
+        </div>
+        <div id="admin-inquiries-container"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Reject Reason Modal -->
+  <div class="modal-overlay" id="reject-modal" role="dialog" aria-modal="true" aria-labelledby="reject-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 class="modal-title" id="reject-modal-title">Reject Medicine Donation</h2>
+        <button class="modal-close-btn" id="close-reject-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="reject-form">
+          <div class="form-group">
+            <label for="reject-reason" class="form-label">Audit Rejection Reason <span class="required">*</span></label>
+            <textarea id="reject-reason" class="form-control" rows="3" placeholder="State reason (e.g. Packaging photo shows seal was broken, expiry date under 90 days, unlabeled strip)..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-danger btn-full" id="btn-confirm-reject">
+            Confirm Rejection &amp; Notify Donor
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { API } from '/js/api.js';
+    import { requireAuth, setupNavbar } from '/js/auth.js';
+    import { showToast, openModal, closeModal, applyAccessibilitySettings } from '/js/ui.js';
+
+    let selectedDonationId = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Require strictly 'admin' role
+      const user = await requireAuth(['admin']);
+      if (!user) return;
+
+      setupNavbar(user);
+      if (user.settings) applyAccessibilitySettings(user.settings);
+
+      setupTabs();
+      loadAdminStats();
+      loadVerificationQueue();
+
+      if (window.location.hash === '#inquiries') {
+        document.getElementById('tab-inquiries').click();
+      }
+
+      document.getElementById('btn-refresh-admin').addEventListener('click', () => {
+        loadAdminStats();
+        loadVerificationQueue();
+        showToast('Dashboard refreshed', 'info');
+      });
+
+      document.getElementById('btn-refresh-inquiries').addEventListener('click', () => {
+        loadInquiries();
+        loadAdminStats();
+        showToast('Inquiries refreshed', 'info');
+      });
+
+      // Reject modal setup
+      document.getElementById('close-reject-modal').addEventListener('click', () => closeModal('reject-modal'));
+      document.getElementById('reject-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const reason = document.getElementById('reject-reason').value.trim();
+        if (!reason || !selectedDonationId) return;
+
+        try {
+          await API.admin.rejectDonation(selectedDonationId, reason);
+          closeModal('reject-modal');
+          showToast('Donation rejected and donor notified with reason', 'info');
+          loadAdminStats();
+          loadVerificationQueue();
+        } catch (err) {
+          showToast(err.message || 'Error rejecting donation', 'error');
+        }
+      });
+    });
+
+    function setupTabs() {
+      const tabs = [
+        { btn: document.getElementById('tab-verify'), panel: document.getElementById('panel-verify'), loader: loadVerificationQueue },
+        { btn: document.getElementById('tab-all-donations'), panel: document.getElementById('panel-all-donations'), loader: loadAllDonations },
+        { btn: document.getElementById('tab-requests'), panel: document.getElementById('panel-requests'), loader: loadRequests },
+        { btn: document.getElementById('tab-users'), panel: document.getElementById('panel-users'), loader: loadUsers },
+        { btn: document.getElementById('tab-ngos'), panel: document.getElementById('panel-ngos'), loader: loadNgos },
+        { btn: document.getElementById('tab-reports'), panel: document.getElementById('panel-reports'), loader: loadReports },
+        { btn: document.getElementById('tab-inquiries'), panel: document.getElementById('panel-inquiries'), loader: loadInquiries }
+      ];
+
+      tabs.forEach(({ btn, panel, loader }) => {
+        btn.addEventListener('click', () => {
+          tabs.forEach(t => {
+            t.btn.classList.remove('active');
+            t.btn.setAttribute('aria-selected', 'false');
+            t.panel.style.display = 'none';
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+          panel.style.display = 'block';
+          if (loader) loader();
+        });
+      });
+    }
+
+    async function loadAdminStats() {
+      try {
+        const res = await API.admin.getStats();
+        const data = res.data;
+        document.getElementById('stat-total-donations').textContent = data.totalDonations;
+        document.getElementById('stat-pending-donations').textContent = data.pendingDonations;
+        document.getElementById('stat-verified-donations').textContent = data.verifiedDonations;
+        document.getElementById('stat-active-requests').textContent = data.activeRequests;
+        document.getElementById('stat-total-users').textContent = data.totalUsers;
+        document.getElementById('count-pending-badge').textContent = data.pendingDonations;
+        document.getElementById('stat-contact-messages').textContent = data.unreadContactMessages ? `${data.unreadContactMessages} new` : (data.totalContactMessages || '0');
+        document.getElementById('count-inquiries-badge').textContent = data.unreadContactMessages || '0';
+      } catch (err) {
+        console.error('Error fetching admin stats:', err);
+      }
+    }
+
+    async function loadVerificationQueue() {
+      const container = document.getElementById('verify-queue-container');
+      container.innerHTML = `<p style="padding:24px 0; color:var(--color-text-muted);">Scanning pending verification queue...</p>`;
+
+      try {
+        const res = await API.admin.getDonations({ status: 'Pending Verification' });
+        const list = res.data?.donations || [];
+
+        if (list.length === 0) {
+          container.innerHTML = `
+            <div class="card" style="text-align:center; padding:48px;">
+              <div style="font-size:36px; margin-bottom:8px;">✅</div>
+              <h3>Queue is All Clear!</h3>
+              <p>There are no medicine donations currently awaiting safety review.</p>
+            </div>
+          `;
+          return;
+        }
+
+        let html = `
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Photo</th>
+                  <th>Medicine Details</th>
+                  <th>Batch / Expiry</th>
+                  <th>Donor Info</th>
+                  <th>Quantity</th>
+                  <th>Locality</th>
+                  <th>Safety Decision</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+
+        list.forEach(d => {
+          const exp = new Date(d.expiryDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+          const donorName = d.donor ? d.donor.name : 'Unknown Donor';
+          const donorContact = d.donor ? `${d.donor.email} (${d.donor.phone})` : '';
+
+          html += `
+            <tr>
+              <td style="width:70px;">
+                <img src="${d.photoPath}" alt="${d.medicineName}" style="width:60px; height:50px; object-fit:cover; border-radius:6px; border:1px solid var(--color-border);" onerror="this.src='/assets/sample-med-1.svg'">
+              </td>
+              <td>
+                <div style="font-weight:700; color:var(--color-midnight-navy);">${d.medicineName}</div>
+                <div style="font-size:12px; color:var(--color-text-muted);">${d.genericName}</div>
+                <span class="badge badge-pending" style="font-size:10px; margin-top:2px;">${d.category}</span>
+              </td>
+              <td>
+                <div>Batch: <strong>${d.batchNumber}</strong></div>
+                <div style="font-size:12px; color:var(--color-text-muted);">Exp: <strong>${exp}</strong></div>
+              </td>
+              <td>
+                <div style="font-weight:600;">${donorName}</div>
+                <div style="font-size:11px; color:var(--color-text-muted);">${donorContact}</div>
+              </td>
+              <td><strong>${d.quantity}</strong> ${d.unit}</td>
+              <td style="font-size:12px;">📍 ${d.locality}</td>
+              <td>
+                <div style="display:flex; gap:6px;">
+                  <button class="btn btn-success btn-sm btn-approve-donation" data-id="${d._id}">
+                    ✓ Verify
+                  </button>
+                  <button class="btn btn-danger btn-sm btn-reject-donation" data-id="${d._id}">
+                    ✗ Reject
+                  </button>
+                </div>
+              </td>
+            </tr>
+          `;
+        });
+
+        html += `</tbody></table></div>`;
+        container.innerHTML = html;
+
+        // Wire Actions
+        container.querySelectorAll('.btn-approve-donation').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            try {
+              await API.admin.verifyDonation(btn.dataset.id);
+              showToast('Donation verified! Now visible in public directory.', 'success');
+              loadAdminStats();
+              loadVerificationQueue();
+            } catch (err) {
+              showToast(err.message || 'Error verifying', 'error');
+            }
+          });
+        });
+
+        container.querySelectorAll('.btn-reject-donation').forEach(btn => {
+          btn.addEventListener('click', () => {
+            selectedDonationId = btn.dataset.id;
+            document.getElementById('reject-reason').value = '';
+            openModal('reject-modal');
+          });
+        });
+
+      } catch (err) {
+        container.innerHTML = `<div class="alert-banner alert-danger">Error loading queue: ${err.message}</div>`;
+      }
+    }
+
+    async function loadAllDonations() {
+      const container = document.getElementById('all-donations-container');
+      container.innerHTML = `<p style="padding:24px 0; color:var(--color-text-muted);">Loading inventory...</p>`;
+
+      try {
+        const res = await API.admin.getDonations();
+        const list = res.data?.donations || [];
+
+        let html = `
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Medicine</th>
+                  <th>Category</th>
+                  <th>Qty (Available / Total)</th>
+                  <th>Expiry</th>
+                  <th>Status</th>
+                  <th>Locality</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+
+        list.forEach(d => {
+          const exp = new Date(d.expiryDate).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+          let badge = 'badge-pending';
+          if (d.status === 'Verified') badge = 'badge-verified';
+          if (d.status === 'Matched') badge = 'badge-matched';
+          if (d.status === 'Handed Over') badge = 'badge-handed-over';
+          if (d.status === 'Rejected') badge = 'badge-rejected';
+
+          html += `
+            <tr>
+              <td><strong>${d.donationCode}</strong></td>
+              <td>
+                <div style="font-weight:700;">${d.medicineName}</div>
+                <div style="font-size:11px; color:var(--color-text-muted);">${d.genericName}</div>
+              </td>
+              <td>${d.category}</td>
+              <td><strong>${d.availableQuantity}</strong> / ${d.quantity} ${d.unit}</td>
+              <td>${exp}</td>
+              <td><span class="badge ${badge}">${d.status}</span></td>
+              <td style="font-size:12px;">📍 ${d.locality}</td>
+            </tr>
+          `;
+        });
+
+        html += `</tbody></table></div>`;
+        container.innerHTML = html;
+      } catch (err) {
+        container.innerHTML = `<div class="alert-banner alert-danger">${err.message}</div>`;
+      }
+    }
+
+    async function loadRequests() {
+      const container = document.getElementById('admin-requests-container');
+      container.innerHTML = `<p style="padding:24px 0; color:var(--color-text-muted);">Loading community requests...</p>`;
+
+      try {
+        const res = await API.admin.getRequests();
+        const requests = res.data?.requests || [];
+
+        if (requests.length === 0) {
+          container.innerHTML = `<div class="card"><p style="text-align:center; padding:24px;">No requests found.</p></div>`;
+          return;
+        }
+
+        let html = `
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Request Code</th>
+                  <th>Receiver</th>
+                  <th>Medicine</th>
+                  <th>Requested Qty</th>
+                  <th>Reason</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+
+        requests.forEach(r => {
+          const medName = r.donation ? r.donation.medicineName : 'Unknown Item';
+          const recName = r.receiver ? `${r.receiver.name} (${r.receiver.phone})` : 'Anonymous';
+          let badge = 'badge-pending';
+          if (r.status === 'Approved') badge = 'badge-verified';
+          if (r.status === 'Fulfilled') badge = 'badge-matched';
+          if (r.status === 'Rejected' || r.status === 'Cancelled') badge = 'badge-rejected';
+
+          html += `
+            <tr>
+              <td><strong>${r.requestCode}</strong></td>
+              <td>
+                <div style="font-weight:600;">${recName}</div>
+                <div style="font-size:11px; color:var(--color-text-muted);">${r.receiver?.locality || ''}</div>
+              </td>
+              <td><strong>${medName}</strong></td>
+              <td>${r.quantity}</td>
+              <td style="font-size:12px; max-width:200px;">${r.reason}</td>
+              <td><span class="badge ${badge}">${r.status}</span></td>
+              <td>
+                <div style="display:flex; gap:6px;">
+                  ${r.status === 'Pending' ? `
+                    <button class="btn btn-outline-teal btn-sm req-action-btn" data-id="${r._id}" data-status="Approved">Approve</button>
+                    <button class="btn btn-danger btn-sm req-action-btn" data-id="${r._id}" data-status="Rejected">Reject</button>
+                  ` : ''}
+                  ${r.status === 'Approved' ? `
+                    <button class="btn btn-success btn-sm req-action-btn" data-id="${r._id}" data-status="Fulfilled">Mark Handed Over</button>
+                  ` : ''}
+                </div>
+              </td>
+            </tr>
+          `;
+        });
+
+        html += `</tbody></table></div>`;
+        container.innerHTML = html;
+
+        container.querySelectorAll('.req-action-btn').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            const status = btn.dataset.status;
+            try {
+              await API.admin.updateRequestStatus(btn.dataset.id, status, `Updated by admin to ${status}`);
+              showToast(`Request marked as ${status}`, 'success');
+              loadAdminStats();
+              loadRequests();
+            } catch (err) {
+              showToast(err.message || 'Error updating status', 'error');
+            }
+          });
+        });
+
+      } catch (err) {
+        container.innerHTML = `<div class="alert-banner alert-danger">${err.message}</div>`;
+      }
+    }
+
+    async function loadUsers() {
+      const container = document.getElementById('admin-users-container');
+      try {
+        const res = await API.admin.getUsers();
+        const users = res.data?.users || [];
+
+        let html = `
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>User Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Role</th>
+                  <th>Locality</th>
+                  <th>Active Status</th>
+                  <th>Toggle</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+
+        users.forEach(u => {
+          html += `
+            <tr>
+              <td><strong>${u.name}</strong></td>
+              <td>${u.email}</td>
+              <td>${u.phone}</td>
+              <td><span class="badge badge-pending" style="text-transform:uppercase;">${u.role}</span></td>
+              <td>${u.locality}</td>
+              <td>
+                <span class="badge ${u.isActive ? 'badge-verified' : 'badge-rejected'}">
+                  ${u.isActive ? 'Active' : 'Deactivated'}
+                </span>
+              </td>
+              <td>
+                <button class="btn btn-secondary btn-sm toggle-user-btn" data-id="${u._id}" data-active="${!u.isActive}">
+                  ${u.isActive ? 'Deactivate' : 'Activate'}
+                </button>
+              </td>
+            </tr>
+          `;
+        });
+
+        html += `</tbody></table></div>`;
+        container.innerHTML = html;
+
+        container.querySelectorAll('.toggle-user-btn').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            try {
+              const active = btn.dataset.active === 'true';
+              await API.admin.updateUserStatus(btn.dataset.id, active);
+              showToast('User status updated', 'success');
+              loadUsers();
+            } catch (err) {
+              showToast(err.message || 'Error updating user', 'error');
+            }
+          });
+        });
+
+      } catch (err) {
+        container.innerHTML = `<div class="alert-banner alert-danger">${err.message}</div>`;
+      }
+    }
+
+    async function loadNgos() {
+      const container = document.getElementById('admin-ngos-container');
+      try {
+        const res = await API.admin.getNgoApplications();
+        const apps = res.data?.applications || [];
+
+        if (apps.length === 0) {
+          container.innerHTML = `<div class="card"><p style="text-align:center; padding:24px;">No NGO applications submitted.</p></div>`;
+          return;
+        }
+
+        let html = `
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Organization</th>
+                  <th>Registration</th>
+                  <th>Contact Person</th>
+                  <th>Email / Phone</th>
+                  <th>Operating Areas</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+
+        apps.forEach(a => {
+          html += `
+            <tr>
+              <td><strong>${a.organizationName}</strong></td>
+              <td>${a.registrationNumber}</td>
+              <td>${a.contactPerson}</td>
+              <td>${a.email}<br>${a.phone}</td>
+              <td>${a.operatingAreas.join(', ')}</td>
+              <td><span class="badge ${a.status === 'Approved' ? 'badge-verified' : 'badge-pending'}">${a.status}</span></td>
+              <td>
+                ${a.status === 'Pending' ? `
+                  <div style="display:flex; gap:6px;">
+                    <button class="btn btn-success btn-sm ngo-action-btn" data-id="${a._id}" data-status="Approved">Approve</button>
+                    <button class="btn btn-danger btn-sm ngo-action-btn" data-id="${a._id}" data-status="Rejected">Reject</button>
+                  </div>
+                ` : '<span style="font-size:12px; color:var(--color-text-muted);">Reviewed</span>'}
+              </td>
+            </tr>
+          `;
+        });
+
+        html += `</tbody></table></div>`;
+        container.innerHTML = html;
+
+        container.querySelectorAll('.ngo-action-btn').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            const status = btn.dataset.status;
+            try {
+              await API.admin.reviewNgoApplication(btn.dataset.id, status, `Reviewed as ${status} by admin.`);
+              showToast(`NGO application marked as ${status}`, 'success');
+              loadNgos();
+            } catch (err) {
+              showToast(err.message || 'Error updating application', 'error');
+            }
+          });
+        });
+
+      } catch (err) {
+        container.innerHTML = `<div class="alert-banner alert-danger">${err.message}</div>`;
+      }
+    }
+
+    async function loadReports() {
+      const container = document.getElementById('admin-reports-container');
+      try {
+        const res = await API.admin.getReports();
+        const reports = res.data?.reports || [];
+
+        if (reports.length === 0) {
+          container.innerHTML = `<div class="card"><p style="text-align:center; padding:24px;">No safety reports flagged.</p></div>`;
+          return;
+        }
+
+        let html = `
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Reported Donation</th>
+                  <th>Flag Reason</th>
+                  <th>Details</th>
+                  <th>Reporter</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+
+        reports.forEach(r => {
+          const code = r.targetDonation ? r.targetDonation.donationCode : 'N/A';
+          const med = r.targetDonation ? r.targetDonation.medicineName : 'Unknown';
+
+          html += `
+            <tr>
+              <td><strong>${code}</strong> (${med})</td>
+              <td style="color:var(--color-danger); font-weight:600;">${r.reason}</td>
+              <td style="font-size:12px;">${r.details || 'No additional details'}</td>
+              <td style="font-size:12px;">${r.reporter?.name || 'Anonymous'}</td>
+              <td><span class="badge badge-amber">${r.status}</span></td>
+            </tr>
+          `;
+        });
+
+        html += `</tbody></table></div>`;
+        container.innerHTML = html;
+      } catch (err) {
+        container.innerHTML = `<div class="alert-banner alert-danger">${err.message}</div>`;
+      }
+    }
+
+    async function loadInquiries() {
+      const container = document.getElementById('admin-inquiries-container');
+      container.innerHTML = `<p style="padding:24px 0; color:var(--color-text-muted);">Loading user &amp; NGO inquiries...</p>`;
+
+      try {
+        const res = await API.admin.getContactMessages();
+        const messages = res.data?.messages || [];
+
+        if (messages.length === 0) {
+          container.innerHTML = `
+            <div class="card" style="text-align:center; padding:48px;">
+              <div style="font-size:36px; margin-bottom:8px;">📭</div>
+              <h3>No Inquiries Yet</h3>
+              <p style="color:var(--color-text-muted); font-size:14px; margin-top:4px;">
+                Messages and questions submitted through the "Contact the MedShare Team" form will appear here.
+              </p>
+            </div>
+          `;
+          return;
+        }
+
+        let html = `<div style="display:flex; flex-direction:column; gap:16px;">`;
+
+        messages.forEach(m => {
+          const dateStr = new Date(m.createdAt).toLocaleString('en-IN', {
+            dateStyle: 'medium',
+            timeStyle: 'short'
+          });
+
+          let badgeClass = 'badge-amber';
+          if (m.status === 'Read') badgeClass = 'badge-verified';
+          if (m.status === 'Replied') badgeClass = 'badge-matched';
+
+          html += `
+            <div class="card" style="padding:22px; border-left:4px solid ${m.status === 'Unread' ? 'var(--color-amber)' : 'var(--color-medical-teal)'};">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:12px; margin-bottom:12px;">
+                <div>
+                  <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+                    <span style="font-size:16px; font-weight:700; color:var(--color-midnight-navy);">${m.name}</span>
+                    <a href="mailto:${m.email}" style="font-size:13px; color:var(--color-medical-teal); text-decoration:none; font-weight:600;">&lt;${m.email}&gt;</a>
+                    <span class="badge ${badgeClass}" style="font-size:10px;">${m.status.toUpperCase()}</span>
+                  </div>
+                  <div style="font-size:14px; font-weight:600; color:var(--color-deep-slate); margin-top:4px;">
+                    Subject: ${m.subject}
+                  </div>
+                </div>
+                <div style="font-size:12px; color:var(--color-text-muted);">
+                  🕒 ${dateStr}
+                </div>
+              </div>
+
+              <!-- Message Body -->
+              <div style="background:var(--color-cloud-white); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:14px 18px; font-size:14px; line-height:1.6; color:var(--color-text-main); margin-bottom:16px; white-space:pre-wrap;">${m.message}</div>
+
+              <!-- Action Bar -->
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                  <a href="mailto:${encodeURIComponent(m.email)}?subject=Re:%20${encodeURIComponent(m.subject)}" class="btn btn-primary btn-sm" target="_blank">
+                    ✉️ Reply via Email
+                  </a>
+                  ${m.status !== 'Read' ? `
+                    <button class="btn btn-secondary btn-sm mark-read-btn" data-id="${m._id}">
+                      ✓ Mark as Read
+                    </button>
+                  ` : ''}
+                  ${m.status !== 'Replied' ? `
+                    <button class="btn btn-outline-teal btn-sm mark-replied-btn" data-id="${m._id}">
+                      🤝 Mark as Replied
+                    </button>
+                  ` : ''}
+                </div>
+                <button class="btn btn-danger btn-sm delete-inquiry-btn" data-id="${m._id}" style="padding:4px 10px; font-size:12px;">
+                  🗑️ Delete
+                </button>
+              </div>
+            </div>
+          `;
+        });
+
+        html += `</div>`;
+        container.innerHTML = html;
+
+        // Event listeners for inquiry action buttons
+        container.querySelectorAll('.mark-read-btn').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            try {
+              await API.admin.updateContactMessageStatus(btn.dataset.id, 'Read');
+              showToast('Marked as read', 'success');
+              loadInquiries();
+              loadAdminStats();
+            } catch (err) {
+              showToast(err.message || 'Error updating status', 'error');
+            }
+          });
+        });
+
+        container.querySelectorAll('.mark-replied-btn').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            try {
+              await API.admin.updateContactMessageStatus(btn.dataset.id, 'Replied');
+              showToast('Marked as replied', 'success');
+              loadInquiries();
+              loadAdminStats();
+            } catch (err) {
+              showToast(err.message || 'Error updating status', 'error');
+            }
+          });
+        });
+
+        container.querySelectorAll('.delete-inquiry-btn').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            if (!confirm('Are you sure you want to delete this message?')) return;
+            try {
+              await API.admin.deleteContactMessage(btn.dataset.id);
+              showToast('Message deleted', 'info');
+              loadInquiries();
+              loadAdminStats();
+            } catch (err) {
+              showToast(err.message || 'Error deleting message', 'error');
+            }
+          });
+        });
+
+      } catch (err) {
+        container.innerHTML = `<div class="alert-banner alert-danger">${err.message}</div>`;
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medicine Details | MedShare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container navbar">
+      <a href="/index.html" class="brand-logo">
+        <div class="brand-icon-box" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+            <path d="m8.5 8.5 7 7"/>
+          </svg>
+        </div>
+        <span>MedShare</span>
+      </a>
+
+      <nav class="nav-menu" id="main-nav-links">
+        <a href="/pages/browse.html" class="nav-link">Find Medicine</a>
+        <a href="/pages/donate.html" class="nav-link">Donate Medicine</a>
+        <a href="/pages/ngo-partners.html" class="nav-link">NGO Partners</a>
+        <a href="/pages/safety.html" class="nav-link">Safety Rules</a>
+      </nav>
+
+      <div class="nav-actions" id="navbar-auth-actions"></div>
+    </div>
+  </header>
+
+  <main id="main-content" class="section-padding">
+    <div class="container">
+      <div style="margin-bottom:24px;">
+        <a href="/pages/browse.html" style="font-size:14px; font-weight:600; color:var(--color-medical-teal); text-decoration:none;">
+          &larr; Back to All Available Medicines
+        </a>
+      </div>
+
+      <div id="medicine-detail-container">
+        <div style="text-align:center; padding:64px 0; color:var(--color-text-muted);">
+          Loading medicine specifications and safety audit...
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Request Modal -->
+  <div class="modal-overlay" id="request-modal" role="dialog" aria-modal="true" aria-labelledby="request-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 class="modal-title" id="request-modal-title">Request This Medicine</h2>
+        <button class="modal-close-btn" id="close-request-modal" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="alert-banner alert-info" style="margin-bottom:20px; padding:12px 16px;">
+          <div style="font-size:13px; line-height:1.5;">
+            <strong>Free Community Redistribution:</strong> Medicines on MedShare are 100% free of charge. You will be matched with an NGO or donor collection desk in Ghaziabad.
+          </div>
+        </div>
+
+        <form id="request-form">
+          <div class="form-group">
+            <label for="req-quantity" class="form-label">Quantity Needed <span class="required">*</span></label>
+            <input type="number" id="req-quantity" class="form-control" min="1" required>
+            <div id="req-quantity-helper" class="form-helper">Available: 0</div>
+          </div>
+
+          <div class="form-group">
+            <label for="req-reason" class="form-label">Medical Need / Prescription Reason <span class="required">*</span></label>
+            <textarea id="req-reason" class="form-control" rows="3" placeholder="Briefly describe why this medicine is needed (e.g. Prescribed for fever by KIET doctor, continuous BP therapy)..." required></textarea>
+            <div class="form-helper">Never consume medication without professional diagnosis.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="req-contact" class="form-label">Preferred Coordination Method</label>
+            <select id="req-contact" class="form-control">
+              <option value="in_app">In-App Notification &amp; Dashboard Desk</option>
+              <option value="phone">Phone / WhatsApp</option>
+              <option value="email">Email</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-checkbox-label">
+              <input type="checkbox" id="req-check" required checked>
+              <span style="font-size:12px;">I confirm this medicine is for legitimate personal or family health use as recommended by a qualified physician.</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full btn-lg" id="btn-submit-request">
+            Confirm &amp; Place Request
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Report Modal -->
+  <div class="modal-overlay" id="report-modal" role="dialog" aria-modal="true" aria-labelledby="report-modal-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 class="modal-title" id="report-modal-title">Report Safety Violation</h2>
+        <button class="modal-close-btn" id="close-report-modal" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form id="report-form">
+          <div class="form-group">
+            <label for="report-reason" class="form-label">Violation Category <span class="required">*</span></label>
+            <select id="report-reason" class="form-control" required>
+              <option value="Suspected Opened / Used Packaging">Suspected Opened / Used Packaging</option>
+              <option value="Incorrect or Manipulated Expiry Date">Incorrect or Manipulated Expiry Date</option>
+              <option value="Controlled / Prohibited Substance">Controlled / Prohibited Substance</option>
+              <option value="Damaged or Contaminated Item">Damaged or Contaminated Item</option>
+              <option value="Suspicious Lister / Fraud Attempt">Suspicious Lister / Fraud Attempt</option>
+              <option value="Other Safety Violation">Other Safety Violation</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="report-details" class="form-label">Additional Details</label>
+            <textarea id="report-details" class="form-control" rows="3" placeholder="Provide any specific details or observations for our compliance team..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-danger btn-full" id="btn-submit-report">
+            Submit Safety Report
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { API } from '/js/api.js';
+    import { getCurrentUser, setupNavbar } from '/js/auth.js';
+    import { showToast, openModal, closeModal, applyAccessibilitySettings } from '/js/ui.js';
+
+    let currentUser = null;
+    let currentMedicine = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      currentUser = await getCurrentUser();
+      setupNavbar(currentUser);
+      if (currentUser?.settings) applyAccessibilitySettings(currentUser.settings);
+
+      const params = new URLSearchParams(window.location.search);
+      const medicineId = params.get('id');
+
+      if (!medicineId) {
+        window.location.href = '/pages/browse.html';
+        return;
+      }
+
+      loadMedicineDetails(medicineId);
+      setupModals();
+    });
+
+    async function loadMedicineDetails(id) {
+      const container = document.getElementById('medicine-detail-container');
+      try {
+        const res = await API.medicines.getById(id);
+        currentMedicine = res.data?.medicine;
+
+        if (!currentMedicine) {
+          container.innerHTML = `<div class="alert-banner alert-danger">Medicine record not found or has been removed.</div>`;
+          return;
+        }
+
+        const m = currentMedicine;
+        const exp = new Date(m.expiryDate);
+        const now = new Date();
+        const diffDays = Math.ceil((exp - now) / (1000 * 60 * 60 * 24));
+        const expFormatted = exp.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+        const isExpiringSoon = diffDays < 120;
+        const expiryBadge = isExpiringSoon 
+          ? `<span class="badge badge-amber">⚠️ Expiring Soon (${diffDays} days left)</span>`
+          : `<span class="badge badge-verified">✓ Verified Shelf Life (${diffDays} days left)</span>`;
+
+        container.innerHTML = `
+          <div class="medicine-detail-grid">
+            <!-- Left: Image & Verification Seal -->
+            <div>
+              <img src="${m.photoPath || '/assets/sample-med-1.svg'}" alt="${m.medicineName}" class="medicine-photo-main" onerror="this.src='/assets/sample-med-1.svg'">
+              <div style="margin-top:20px; background:var(--color-cloud-white); padding:16px; border-radius:var(--radius-md); border:1px solid var(--color-border); font-size:13px; color:var(--color-text-muted);">
+                <div style="font-weight:700; color:var(--color-midnight-navy); margin-bottom:6px;">Safety Verification Checklist Passed:</div>
+                <div style="display:flex; flex-direction:column; gap:6px;">
+                  <div>✓ Original blister packaging confirmed sealed and intact</div>
+                  <div>✓ Batch number <strong>${m.batchNumber}</strong> verified against manufacturer record</div>
+                  <div>✓ No cold-chain or controlled substance violation</div>
+                  <div>✓ Stored in cool, dry conditions per donor declaration</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Details & Request Actions -->
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <span class="badge badge-matched" style="text-transform:uppercase;">${m.category}</span>
+                <button id="btn-report-med" class="btn btn-secondary btn-sm" style="color:var(--color-danger); border-color:#fca5a5;">
+                  🚩 Report Item
+                </button>
+              </div>
+
+              <h1 style="font-size:var(--font-size-3xl); margin-bottom:6px;">${m.medicineName}</h1>
+              <p style="font-size:var(--font-size-base); color:var(--color-medical-teal); font-style:italic; margin-bottom:20px;">
+                ${m.genericName}
+              </p>
+
+              <div style="background:#ffffff; border:1px solid var(--color-border); border-radius:var(--radius-lg); padding:20px; margin-bottom:24px;">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                  <div>
+                    <div style="font-size:12px; color:var(--color-text-muted);">Available Quantity</div>
+                    <div style="font-size:24px; font-weight:800; color:var(--color-midnight-navy);">
+                      ${m.availableQuantity} <span style="font-size:14px; font-weight:500;">${m.unit}</span>
+                    </div>
+                  </div>
+                  <div>
+                    <div style="font-size:12px; color:var(--color-text-muted);">Expiry Status</div>
+                    <div style="margin-top:4px;">${expiryBadge}</div>
+                  </div>
+                </div>
+
+                <div style="border-top:1px dashed var(--color-border); margin:16px 0; padding-top:16px; font-size:13px; display:flex; flex-direction:column; gap:8px;">
+                  <div style="display:flex; justify-content:space-between;">
+                    <span style="color:var(--color-text-muted);">Expiry Date:</span>
+                    <strong>${expFormatted}</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between;">
+                    <span style="color:var(--color-text-muted);">Batch Number:</span>
+                    <strong>${m.batchNumber}</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between;">
+                    <span style="color:var(--color-text-muted);">Pickup Locality:</span>
+                    <strong>📍 ${m.locality}</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between;">
+                    <span style="color:var(--color-text-muted);">Handover Method:</span>
+                    <strong style="text-transform:capitalize;">${m.handoverMethod.replace(/_/g, ' ')}</strong>
+                  </div>
+                  <div style="display:flex; justify-content:space-between;">
+                    <span style="color:var(--color-text-muted);">Donor Status:</span>
+                    <strong style="color:var(--color-fresh-mint-dark);">Verified Community Member</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Request Action CTA -->
+              ${m.availableQuantity > 0 ? `
+                <button id="btn-open-request-modal" class="btn btn-primary btn-full btn-lg">
+                  Request This Medicine (Free)
+                </button>
+              ` : `
+                <div class="alert-banner alert-amber">
+                  All available units of this medicine have already been requested or matched.
+                </div>
+              `}
+
+              <!-- Mandatory Medical Disclaimer -->
+              <div style="margin-top:20px; font-size:12px; color:var(--color-text-muted); line-height:1.5; border-left:3px solid var(--color-amber); padding-left:12px;">
+                <strong>Medical Advisory:</strong> Never consume any medication without checking the physical expiry date upon hand-over and consulting your physician or a certified pharmacist.
+              </div>
+            </div>
+          </div>
+        `;
+
+        // Wire Action Listeners
+        document.getElementById('btn-open-request-modal')?.addEventListener('click', () => {
+          if (!currentUser) {
+            const redirect = encodeURIComponent(window.location.pathname + window.location.search);
+            window.location.href = `/pages/login.html?redirect=${redirect}`;
+            return;
+          }
+          document.getElementById('req-quantity').max = m.availableQuantity;
+          document.getElementById('req-quantity').value = Math.min(10, m.availableQuantity);
+          document.getElementById('req-quantity-helper').textContent = `Maximum requestable: ${m.availableQuantity} ${m.unit}`;
+          openModal('request-modal');
+        });
+
+        document.getElementById('btn-report-med')?.addEventListener('click', () => {
+          if (!currentUser) {
+            alert('Please log in to submit a safety report.');
+            window.location.href = '/pages/login.html';
+            return;
+          }
+          openModal('report-modal');
+        });
+
+      } catch (err) {
+        container.innerHTML = `<div class="alert-banner alert-danger">Error loading medicine: ${err.message}</div>`;
+      }
+    }
+
+    function setupModals() {
+      // Close triggers
+      document.getElementById('close-request-modal').addEventListener('click', () => closeModal('request-modal'));
+      document.getElementById('close-report-modal').addEventListener('click', () => closeModal('report-modal'));
+
+      // Submit Request
+      const requestForm = document.getElementById('request-form');
+      const submitReqBtn = document.getElementById('btn-submit-request');
+
+      requestForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const quantity = Number(document.getElementById('req-quantity').value);
+        const reason = document.getElementById('req-reason').value.trim();
+        const contactMethod = document.getElementById('req-contact').value;
+
+        if (!quantity || quantity <= 0) {
+          showToast('Please enter a valid requested quantity', 'error');
+          return;
+        }
+        if (!reason) {
+          showToast('Please state your medical or prescription reason', 'error');
+          return;
+        }
+
+        submitReqBtn.disabled = true;
+        submitReqBtn.textContent = 'Submitting Request...';
+
+        try {
+          const res = await API.requests.create({
+            donationId: currentMedicine._id,
+            quantity,
+            reason,
+            contactMethod
+          });
+
+          closeModal('request-modal');
+          showToast(res.message || 'Medicine requested successfully! Volunteer team will coordinate.', 'success', 5000);
+
+          setTimeout(() => {
+            window.location.href = '/pages/dashboard.html';
+          }, 1200);
+        } catch (err) {
+          showToast(err.message || 'Error submitting request', 'error');
+          submitReqBtn.disabled = false;
+          submitReqBtn.textContent = 'Confirm & Place Request';
+        }
+      });
+
+      // Submit Report
+      const reportForm = document.getElementById('report-form');
+      const submitRepBtn = document.getElementById('btn-submit-report');
+
+      reportForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const reason = document.getElementById('report-reason').value;
+        const details = document.getElementById('report-details').value.trim();
+
+        submitRepBtn.disabled = true;
+
+        try {
+          const res = await API.reports.create({
+            donationId: currentMedicine._id,
+            reason,
+            details
+          });
+
+          closeModal('report-modal');
+          showToast(res.message || 'Report submitted to safety auditor', 'info');
+        } catch (err) {
+          showToast(err.message || 'Error submitting report', 'error');
+        } finally {
+          submitRepBtn.disabled = false;
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | MedShare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container navbar">
+      <a href="/index.html" class="brand-logo">
+        <div class="brand-icon-box" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+            <path d="m8.5 8.5 7 7"/>
+          </svg>
+        </div>
+        <span>MedShare</span>
+      </a>
+
+      <nav class="nav-menu" id="main-nav-links">
+        <a href="/pages/browse.html" class="nav-link">Find Medicine</a>
+        <a href="/pages/verification.html" class="nav-link">How It Works</a>
+        <a href="/pages/safety.html" class="nav-link">Safety Rules</a>
+      </nav>
+
+      <div class="nav-actions" id="navbar-auth-actions">
+        <a href="/pages/login.html" class="btn btn-secondary btn-sm">Log In</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="section-padding">
+    <div class="container" style="max-width: 580px;">
+      <div class="card" style="padding: 36px 32px;">
+        <div style="text-align: center; margin-bottom: 28px;">
+          <h1 style="font-size: var(--font-size-2xl); margin-bottom: 8px;">Create MedShare Account</h1>
+          <p style="font-size: var(--font-size-sm);">Join the KIET Ghaziabad community medicine redistribution network</p>
+        </div>
+
+        <form id="signup-form" novalidate>
+          <div class="form-group">
+            <label for="name" class="form-label">Full Name <span class="required">*</span></label>
+            <input type="text" id="name" class="form-control" placeholder="e.g. Aarav Sharma" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address <span class="required">*</span></label>
+              <input type="email" id="email" class="form-control" placeholder="name@kiet.edu" required>
+            </div>
+            <div class="form-group">
+              <label for="phone" class="form-label">Phone Number <span class="required">*</span></label>
+              <input type="tel" id="phone" class="form-control" placeholder="e.g. 9811223344" required>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label for="role" class="form-label">I want to join as: <span class="required">*</span></label>
+              <select id="role" class="form-control" required>
+                <option value="donor">Medicine Donor (Household / Student)</option>
+                <option value="receiver">Receiver (Patient / Student in need)</option>
+                <option value="ngo">NGO Representative</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="locality" class="form-label">Locality / Campus <span class="required">*</span></label>
+              <select id="locality" class="form-control" required>
+                <option value="KIET Campus (Muradnagar, Ghaziabad)">KIET Campus (Muradnagar)</option>
+                <option value="Muradnagar Town">Muradnagar Town</option>
+                <option value="Raj Nagar Extension (Ghaziabad)">Raj Nagar Extension</option>
+                <option value="Raj Nagar (Ghaziabad)">Raj Nagar</option>
+                <option value="Kavi Nagar (Ghaziabad)">Kavi Nagar</option>
+                <option value="Vasundhara (Ghaziabad)">Vasundhara</option>
+                <option value="Indirapuram (Ghaziabad)">Indirapuram</option>
+                <option value="Vaishali (Ghaziabad)">Vaishali</option>
+                <option value="Crossings Republik (Ghaziabad)">Crossings Republik</option>
+                <option value="Noida Sector 62 / NCR Border">Noida Sector 62 / NCR</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div class="form-group">
+              <label for="password" class="form-label">Password <span class="required">*</span></label>
+              <input type="password" id="password" class="form-control" placeholder="Min. 8 chars" required autocomplete="new-password">
+              <div class="form-helper">At least 8 chars, 1 uppercase, 1 lowercase, 1 digit</div>
+            </div>
+
+            <div class="form-group">
+              <label for="confirmPassword" class="form-label">Confirm Password <span class="required">*</span></label>
+              <input type="password" id="confirmPassword" class="form-control" placeholder="Repeat password" required autocomplete="new-password">
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 24px;">
+            <label class="form-checkbox-label">
+              <input type="checkbox" id="terms-agree" required>
+              <span>I confirm that all donations I offer will be strictly unexpired, sealed in original blister packaging, and stored according to manufacturer recommendations.</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full btn-lg" id="submit-btn">
+            Create Free Account
+          </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--color-border); font-size: var(--font-size-sm);">
+          Already registered? <a href="/pages/login.html" style="font-weight: 600;">Log in here</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { API } from '/js/api.js';
+    import { clearUserCache } from '/js/auth.js';
+    import { showToast } from '/js/ui.js';
+    import { isValidEmail, isValidPassword, clearFormErrors, setFieldError } from '/js/validation.js';
+
+    const form = document.getElementById('signup-form');
+    const submitBtn = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearFormErrors(form);
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const role = document.getElementById('role').value;
+      const locality = document.getElementById('locality').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const termsAgree = document.getElementById('terms-agree').checked;
+
+      let valid = true;
+
+      if (!name || name.length < 2) {
+        setFieldError(document.getElementById('name'), 'Full name must be at least 2 characters');
+        valid = false;
+      }
+      if (!isValidEmail(email)) {
+        setFieldError(document.getElementById('email'), 'Please enter a valid email address');
+        valid = false;
+      }
+      if (!phone || phone.length < 8) {
+        setFieldError(document.getElementById('phone'), 'Please enter a valid contact phone number');
+        valid = false;
+      }
+      if (!isValidPassword(password)) {
+        setFieldError(document.getElementById('password'), 'Password must be at least 8 characters and include uppercase, lowercase, and a number');
+        valid = false;
+      }
+      if (password !== confirmPassword) {
+        setFieldError(document.getElementById('confirmPassword'), 'Passwords do not match');
+        valid = false;
+      }
+      if (!termsAgree) {
+        showToast('You must agree to the medicine safety terms to register', 'warning');
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Registering account...';
+
+      try {
+        const res = await API.auth.register({ name, email, phone, role, locality, password });
+        showToast('Registration successful! Welcome to MedShare.', 'success');
+        clearUserCache();
+
+        setTimeout(() => {
+          window.location.href = '/pages/dashboard.html';
+        }, 600);
+      } catch (err) {
+        showToast(err.message || 'Registration failed', 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Create Free Account';
+      }
+    });
+  </script>
+</body>
+</html>

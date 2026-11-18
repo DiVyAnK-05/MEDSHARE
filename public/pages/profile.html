@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile | MedShare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container navbar">
+      <a href="/index.html" class="brand-logo">
+        <div class="brand-icon-box" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+            <path d="m8.5 8.5 7 7"/>
+          </svg>
+        </div>
+        <span>MedShare</span>
+      </a>
+
+      <nav class="nav-menu" id="main-nav-links">
+        <a href="/pages/dashboard.html" class="nav-link">Dashboard</a>
+        <a href="/pages/browse.html" class="nav-link">Find Medicine</a>
+        <a href="/pages/donate.html" class="nav-link">Donate</a>
+      </nav>
+
+      <div class="nav-actions" id="navbar-auth-actions"></div>
+    </div>
+  </header>
+
+  <main id="main-content" class="section-padding">
+    <div class="container" style="max-width: 680px;">
+      <h1 style="font-size:var(--font-size-3xl); margin-bottom:8px;">Profile &amp; Account</h1>
+      <p style="font-size:var(--font-size-sm); color:var(--color-text-muted); margin-bottom:32px;">Manage your contact details and login credentials</p>
+
+      <!-- Profile Update Card -->
+      <div class="card" style="padding:32px; margin-bottom:32px;">
+        <h2 style="font-size:var(--font-size-xl); margin-bottom:20px;">Personal Information</h2>
+        <form id="profile-form">
+          <div class="form-group">
+            <label for="prof-name" class="form-label">Full Name <span class="required">*</span></label>
+            <input type="text" id="prof-name" class="form-control" required>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="form-group">
+              <label for="prof-email" class="form-label">Email (Account ID)</label>
+              <input type="email" id="prof-email" class="form-control" disabled style="background:#f1f5f9; cursor:not-allowed;">
+            </div>
+            <div class="form-group">
+              <label for="prof-phone" class="form-label">Phone Number <span class="required">*</span></label>
+              <input type="tel" id="prof-phone" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="prof-locality" class="form-label">Default Locality <span class="required">*</span></label>
+            <select id="prof-locality" class="form-control" required>
+              <option value="KIET Campus (Muradnagar, Ghaziabad)">KIET Campus (Muradnagar)</option>
+              <option value="Muradnagar Town">Muradnagar Town</option>
+              <option value="Raj Nagar Extension (Ghaziabad)">Raj Nagar Extension</option>
+              <option value="Raj Nagar (Ghaziabad)">Raj Nagar</option>
+              <option value="Kavi Nagar (Ghaziabad)">Kavi Nagar</option>
+              <option value="Vasundhara (Ghaziabad)">Vasundhara</option>
+              <option value="Indirapuram (Ghaziabad)">Indirapuram</option>
+              <option value="Vaishali (Ghaziabad)">Vaishali</option>
+              <option value="Crossings Republik (Ghaziabad)">Crossings Republik</option>
+              <option value="Noida Sector 62 / NCR Border">Noida Sector 62 / NCR</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="btn-save-profile">
+            Save Profile Changes
+          </button>
+        </form>
+      </div>
+
+      <!-- Password Change Card -->
+      <div class="card" style="padding:32px;">
+        <h2 style="font-size:var(--font-size-xl); margin-bottom:20px;">Change Password</h2>
+        <form id="password-form">
+          <div class="form-group">
+            <label for="current-password" class="form-label">Current Password <span class="required">*</span></label>
+            <input type="password" id="current-password" class="form-control" required autocomplete="current-password">
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="form-group">
+              <label for="new-password" class="form-label">New Password <span class="required">*</span></label>
+              <input type="password" id="new-password" class="form-control" placeholder="Min. 8 characters" required autocomplete="new-password">
+            </div>
+            <div class="form-group">
+              <label for="confirm-new-password" class="form-label">Confirm New Password <span class="required">*</span></label>
+              <input type="password" id="confirm-new-password" class="form-control" required autocomplete="new-password">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-secondary" id="btn-save-password">
+            Update Password
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { API } from '/js/api.js';
+    import { requireAuth, setupNavbar, clearUserCache } from '/js/auth.js';
+    import { showToast, applyAccessibilitySettings } from '/js/ui.js';
+    import { isValidPassword } from '/js/validation.js';
+
+    let currentUser = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      currentUser = await requireAuth();
+      if (!currentUser) return;
+      setupNavbar(currentUser);
+      if (currentUser.settings) applyAccessibilitySettings(currentUser.settings);
+
+      // Populate current values
+      document.getElementById('prof-name').value = currentUser.name;
+      document.getElementById('prof-email').value = currentUser.email;
+      document.getElementById('prof-phone').value = currentUser.phone;
+
+      const locSelect = document.getElementById('prof-locality');
+      for (let opt of locSelect.options) {
+        if (opt.value === currentUser.locality) {
+          opt.selected = true;
+          break;
+        }
+      }
+
+      // Profile submit
+      document.getElementById('profile-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('prof-name').value.trim();
+        const phone = document.getElementById('prof-phone').value.trim();
+        const locality = document.getElementById('prof-locality').value;
+
+        try {
+          const res = await API.users.updateProfile({ name, phone, locality });
+          showToast(res.message || 'Profile updated successfully', 'success');
+          clearUserCache();
+        } catch (err) {
+          showToast(err.message || 'Error updating profile', 'error');
+        }
+      });
+
+      // Password submit
+      document.getElementById('password-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const currentPassword = document.getElementById('current-password').value;
+        const newPassword = document.getElementById('new-password').value;
+        const confirmNew = document.getElementById('confirm-new-password').value;
+
+        if (!isValidPassword(newPassword)) {
+          showToast('New password must be at least 8 characters with mixed case and a digit', 'error');
+          return;
+        }
+        if (newPassword !== confirmNew) {
+          showToast('New passwords do not match', 'error');
+          return;
+        }
+
+        try {
+          const res = await API.users.updatePassword(currentPassword, newPassword);
+          showToast(res.message || 'Password changed successfully', 'success');
+          document.getElementById('password-form').reset();
+        } catch (err) {
+          showToast(err.message || 'Error changing password', 'error');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

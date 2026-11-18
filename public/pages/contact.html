@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Project Team | MedShare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container navbar">
+      <a href="/index.html" class="brand-logo">
+        <div class="brand-icon-box" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+            <path d="m8.5 8.5 7 7"/>
+          </svg>
+        </div>
+        <span>MedShare</span>
+      </a>
+
+      <nav class="nav-menu" id="main-nav-links">
+        <a href="/pages/browse.html" class="nav-link">Find Medicine</a>
+        <a href="/pages/donate.html" class="nav-link">Donate</a>
+        <a href="/pages/ngo-partners.html" class="nav-link">NGO Partners</a>
+        <a href="/pages/contact.html" class="nav-link active">Contact</a>
+      </nav>
+
+      <div class="nav-actions" id="navbar-auth-actions"></div>
+    </div>
+  </header>
+
+  <main id="main-content" class="section-padding">
+    <div class="container" style="max-width: 960px;">
+      <div style="text-align:center; margin-bottom:40px;">
+        <h1 style="font-size:var(--font-size-3xl); margin-bottom:8px;">Contact the MedShare Team</h1>
+        <p style="font-size:var(--font-size-sm); color:var(--color-text-muted);">
+          Questions about medicine donation, pilot drop-desks at KIET, or institutional partnerships? Reach out to our creator team.
+        </p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1.2fr; gap:36px; margin-bottom:40px;">
+        <!-- Left: Campus Info -->
+        <div class="card" style="padding:32px; background:var(--color-midnight-navy); color:#ffffff;">
+          <h2 style="color:#ffffff; font-size:var(--font-size-xl); margin-bottom:16px;">Pilot Headquarters</h2>
+          <p style="color:#b0c4de; font-size:14px; line-height:1.6; margin-bottom:24px;">
+            KIET Group of Institutions<br>
+            Delhi-NCR, Meerut Road (NH-58)<br>
+            Muradnagar, Ghaziabad, UP 201206
+          </p>
+
+          <div style="display:flex; flex-direction:column; gap:14px; font-size:13px; color:#b0c4de;">
+            <div>
+              <strong style="color:var(--color-fresh-mint); display:block;">Student Drop Desk:</strong>
+              Main Gate 1 Security Reception, KIET Campus
+            </div>
+            <div>
+              <strong style="color:var(--color-fresh-mint); display:block;">Official Support:</strong>
+              contact@medshare.org
+            </div>
+            <div>
+              <strong style="color:var(--color-fresh-mint); display:block;">NGO Coordination Desk:</strong>
+              pehchaan@medshare.org
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Real Working Contact Form -->
+        <div class="card" style="padding:32px;">
+          <h2 style="font-size:var(--font-size-xl); margin-bottom:20px;">Send Us a Message</h2>
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="contact-name" class="form-label">Your Name <span class="required">*</span></label>
+              <input type="text" id="contact-name" class="form-control" placeholder="Aarav Sharma" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-email" class="form-label">Email Address <span class="required">*</span></label>
+              <input type="email" id="contact-email" class="form-control" placeholder="aarav@kiet.edu" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-subject" class="form-label">Subject <span class="required">*</span></label>
+              <input type="text" id="contact-subject" class="form-control" placeholder="Inquiry regarding medicine drop-off" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message" class="form-label">Message Content <span class="required">*</span></label>
+              <textarea id="contact-message" class="form-control" rows="4" placeholder="How can our student team assist you?..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full btn-lg" id="submit-btn">
+              Send Message
+            </button>
+          </form>
+
+          <div id="contact-success" style="display:none; margin-top:20px; flex-direction:column; gap:10px;" class="alert-banner alert-success">
+            <div>
+              <strong>✓ Message Delivered!</strong> Your inquiry has been saved to the database and forwarded to the MedShare team.
+            </div>
+            <div id="admin-inbox-shortcut" style="display:none; font-size:13px; color:var(--color-midnight-navy); background:rgba(255,255,255,0.75); padding:10px 14px; border-radius:var(--radius-sm); border-left:3px solid var(--color-medical-teal);">
+              🛡️ <strong>Creator / Admin Notice:</strong> You are signed in as an Admin. You can view, manage, and reply to all received messages directly in the <a href="/pages/admin.html#inquiries" style="color:var(--color-medical-teal); font-weight:700;">Admin Inquiries Inbox &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project Creators & Team Contacts Card -->
+      <div class="card" style="padding:36px; border-top:5px solid var(--color-medical-teal);">
+        <div style="margin-bottom:24px;">
+          <span class="badge badge-verified" style="margin-bottom:6px;">Project Creators</span>
+          <h2 style="font-size:var(--font-size-2xl); margin-top:4px;">MedShare Development Team (KIET Group of Institutions)</h2>
+          <p style="font-size:14px; color:var(--color-text-muted);">
+            Developed by our final-year college team of 3. Reach out directly to any team member for technical or operational queries:
+          </p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px;">
+          <!-- Lead Creator: Jha Divyank -->
+          <div style="background:var(--color-cloud-white); border:1.5px solid var(--color-medical-teal); border-radius:var(--radius-lg); padding:22px; position:relative;">
+            <div style="position:absolute; top:16px; right:16px;">
+              <span class="badge badge-matched" style="font-size:10px;">PROJECT LEAD</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+              <div style="width:48px; height:48px; border-radius:50%; background:var(--color-medical-teal); color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:18px; box-shadow:var(--shadow-teal);">
+                JD
+              </div>
+              <div>
+                <h3 style="font-size:17px; margin:0; color:var(--color-midnight-navy); font-weight:700;">Jha Divyank</h3>
+                <div style="font-size:12px; color:var(--color-medical-teal); font-weight:600;">Full-Stack Engineer &bull; MCA</div>
+              </div>
+            </div>
+            <div style="font-size:13px; color:var(--color-text-main); display:flex; flex-direction:column; gap:8px;">
+              <div>🎓 <strong>Institution:</strong> KIET Group of Institutions</div>
+              <div>✉️ <strong>Email:</strong> <a href="mailto:jhadivyank7@gmail.com" style="color:var(--color-medical-teal); font-weight:600;">jhadivyank7@gmail.com</a></div>
+              <div>📞 <strong>Phone:</strong> <a href="tel:9507438151" style="color:var(--color-text-main); font-weight:600;">+91 95074 38151</a></div>
+              <div style="font-size:12px; color:var(--color-text-muted); margin-top:4px; padding-top:8px; border-top:1px dashed var(--color-border);">
+                <strong>Role:</strong> Node.js &amp; Express architecture, MongoDB schemas, JWT authentication, Safety verification engine.
+              </div>
+            </div>
+          </div>
+
+          <!-- Team Member 2: Dhwani Bansal -->
+          <div style="background:var(--color-cloud-white); border:1.5px solid var(--color-border); border-radius:var(--radius-lg); padding:22px; position:relative;">
+            <div style="position:absolute; top:16px; right:16px;">
+              <span class="badge badge-verified" style="font-size:10px;">CO-CREATOR</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+              <div style="width:48px; height:48px; border-radius:50%; background:var(--color-deep-slate); color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:18px;">
+                DB
+              </div>
+              <div>
+                <h3 style="font-size:17px; margin:0; color:var(--color-midnight-navy); font-weight:700;">Dhwani Bansal</h3>
+                <div style="font-size:12px; color:var(--color-medical-teal); font-weight:600;">Frontend &amp; UI/UX &bull; MCA</div>
+              </div>
+            </div>
+            <div style="font-size:13px; color:var(--color-text-main); display:flex; flex-direction:column; gap:8px;">
+              <div>🎓 <strong>Institution:</strong> KIET Group of Institutions</div>
+              <div>✉️ <strong>Email:</strong> <a href="mailto:2628mca0300@kiet.edu" style="color:var(--color-medical-teal); font-weight:600;">2628mca0300@kiet.edu</a></div>
+              <div>📞 <strong>Phone:</strong> <a href="tel:8445046646" style="color:var(--color-text-main); font-weight:600;">+91 84450 46646</a></div>
+              <div style="font-size:12px; color:var(--color-text-muted); margin-top:4px; padding-top:8px; border-top:1px dashed var(--color-border);">
+                <strong>Role:</strong> Semantic HTML5, CSS design tokens, ladder taskbar layout, accessible focus and high-contrast modes.
+              </div>
+            </div>
+          </div>
+
+          <!-- Team Member 3: Drishti Tyagi -->
+          <div style="background:var(--color-cloud-white); border:1.5px solid var(--color-border); border-radius:var(--radius-lg); padding:22px; position:relative;">
+            <div style="position:absolute; top:16px; right:16px;">
+              <span class="badge badge-verified" style="font-size:10px;">CO-CREATOR</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+              <div style="width:48px; height:48px; border-radius:50%; background:var(--color-deep-slate); color:#ffffff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:18px;">
+                DT
+              </div>
+              <div>
+                <h3 style="font-size:17px; margin:0; color:var(--color-midnight-navy); font-weight:700;">Drishti Tyagi</h3>
+                <div style="font-size:12px; color:var(--color-medical-teal); font-weight:600;">Safety &amp; Compliance &bull; MCA</div>
+              </div>
+            </div>
+            <div style="font-size:13px; color:var(--color-text-main); display:flex; flex-direction:column; gap:8px;">
+              <div>🎓 <strong>Institution:</strong> KIET Group of Institutions</div>
+              <div>✉️ <strong>Email:</strong> <a href="mailto:2628mca0010@kiet.edu" style="color:var(--color-medical-teal); font-weight:600;">2628mca0010@kiet.edu</a></div>
+              <div>📞 <strong>Phone:</strong> <a href="tel:7668952077" style="color:var(--color-text-main); font-weight:600;">+91 76689 52077</a></div>
+              <div style="font-size:12px; color:var(--color-text-muted); margin-top:4px; padding-top:8px; border-top:1px dashed var(--color-border);">
+                <strong>Role:</strong> Pharmaceutical classification, 90-day shelf-life audit rules, Ghaziabad NGO partner desk workflows.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { API } from '/js/api.js';
+    import { getCurrentUser, setupNavbar } from '/js/auth.js';
+    import { showToast, applyAccessibilitySettings } from '/js/ui.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await getCurrentUser();
+      setupNavbar(user);
+      if (user?.settings) applyAccessibilitySettings(user.settings);
+
+      if (user) {
+        document.getElementById('contact-name').value = user.name;
+        document.getElementById('contact-email').value = user.email;
+        if (user.role === 'admin') {
+          document.getElementById('admin-inbox-shortcut').style.display = 'block';
+        }
+      }
+
+      const form = document.getElementById('contact-form');
+      const submitBtn = document.getElementById('submit-btn');
+      const successBox = document.getElementById('contact-success');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('contact-name').value.trim();
+        const email = document.getElementById('contact-email').value.trim();
+        const subject = document.getElementById('contact-subject').value.trim();
+        const message = document.getElementById('contact-message').value.trim();
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending Message...';
+
+        try {
+          const res = await API.contact.submit({ name, email, subject, message });
+          successBox.style.display = 'flex';
+          showToast(res.message || 'Message sent successfully!', 'success');
+          form.reset();
+        } catch (err) {
+          showToast(err.message || 'Failed to send message', 'error');
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Send Message';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate Medicine | MedShare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container navbar">
+      <a href="/index.html" class="brand-logo">
+        <div class="brand-icon-box" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+            <path d="m8.5 8.5 7 7"/>
+          </svg>
+        </div>
+        <span>MedShare</span>
+      </a>
+
+      <nav class="nav-menu" id="main-nav-links">
+        <a href="/pages/browse.html" class="nav-link">Find Medicine</a>
+        <a href="/pages/verification.html" class="nav-link">How It Works</a>
+        <a href="/pages/safety.html" class="nav-link">Safety Rules</a>
+      </nav>
+
+      <div class="nav-actions" id="navbar-auth-actions"></div>
+    </div>
+  </header>
+
+  <main id="main-content" class="section-padding">
+    <div class="container" style="max-width: 760px;">
+      <div style="text-align:center; margin-bottom:32px;">
+        <span class="badge badge-verified" style="margin-bottom:8px;">Zero Medicine Waste</span>
+        <h1 style="font-size:var(--font-size-3xl); margin-bottom:8px;">Donate Unused Medicine</h1>
+        <p style="font-size:var(--font-size-base);">Help someone in the Ghaziabad community by listing your sealed, unexpired medicines.</p>
+      </div>
+
+      <!-- Mandatory Safety Box -->
+      <div class="alert-banner alert-amber">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;">
+          <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        <div style="font-size:13px; line-height:1.6;">
+          <strong style="display:block; font-size:14px; margin-bottom:4px;">Strict Safety Policy Before You List:</strong>
+          1. <strong>Original Sealed Packaging:</strong> Blister strips must be completely intact. Loose tablets or opened bottles are strictly prohibited.<br>
+          2. <strong>Minimum Shelf Life:</strong> Medicines must have at least <strong>90 days (approx. 3 months)</strong> remaining before expiry.<br>
+          3. <strong>Prohibited Items:</strong> No narcotics, sleeping pills, cold-chain requiring items (insulin, vaccines), or hospital injections.
+        </div>
+      </div>
+
+      <!-- Donation Form Card -->
+      <div class="card" style="padding: 36px;">
+        <form id="donation-form" enctype="multipart/form-data" novalidate>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div class="form-group">
+              <label for="medicineName" class="form-label">Brand / Medicine Name <span class="required">*</span></label>
+              <input type="text" id="medicineName" name="medicineName" class="form-control" placeholder="e.g. Dolo 650, Augmentin" required>
+            </div>
+
+            <div class="form-group">
+              <label for="genericName" class="form-label">Generic Salt Composition <span class="required">*</span></label>
+              <input type="text" id="genericName" name="genericName" class="form-control" placeholder="e.g. Paracetamol IP 650mg" required>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div class="form-group">
+              <label for="category" class="form-label">Category <span class="required">*</span></label>
+              <select id="category" name="category" class="form-control" required>
+                <option value="Pain Relief & Analgesics">Pain Relief &amp; Analgesics</option>
+                <option value="Antibiotics">Antibiotics</option>
+                <option value="Vitamins & Supplements">Vitamins &amp; Supplements</option>
+                <option value="First Aid & Antiseptics">First Aid &amp; Antiseptics</option>
+                <option value="Respiratory & Allergy">Respiratory &amp; Allergy</option>
+                <option value="Gastrointestinal">Gastrointestinal</option>
+                <option value="Cardiovascular & Hypertension">Cardiovascular &amp; Hypertension</option>
+                <option value="Dermatological / Skin Care">Dermatological / Skin Care</option>
+                <option value="Diabetes Care (Non-Refrigerated Oral)">Diabetes Care (Oral Only)</option>
+                <option value="Other Essential OTC">Other Essential OTC</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="batchNumber" class="form-label">Batch Number (From Strip) <span class="required">*</span></label>
+              <input type="text" id="batchNumber" name="batchNumber" class="form-control" placeholder="e.g. B-88401" required>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px;">
+            <div class="form-group">
+              <label for="quantity" class="form-label">Quantity <span class="required">*</span></label>
+              <input type="number" id="quantity" name="quantity" class="form-control" min="1" placeholder="e.g. 15" required>
+            </div>
+
+            <div class="form-group">
+              <label for="unit" class="form-label">Unit <span class="required">*</span></label>
+              <select id="unit" name="unit" class="form-control" required>
+                <option value="tablets">Tablets</option>
+                <option value="capsules">Capsules</option>
+                <option value="strips">Strips</option>
+                <option value="bottles">Sealed Bottles</option>
+                <option value="tubes">Sealed Tubes</option>
+                <option value="boxes">Boxes</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="expiryDate" class="form-label">Expiry Date <span class="required">*</span></label>
+              <input type="date" id="expiryDate" name="expiryDate" class="form-control" required>
+              <div id="expiry-feedback" class="form-helper">Must be &ge; 90 days away</div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            <div class="form-group">
+              <label for="locality" class="form-label">Pickup Locality (Ghaziabad Region) <span class="required">*</span></label>
+              <select id="locality" name="locality" class="form-control" required>
+                <option value="KIET Campus (Muradnagar, Ghaziabad)">KIET Campus (Muradnagar)</option>
+                <option value="Muradnagar Town">Muradnagar Town</option>
+                <option value="Raj Nagar Extension (Ghaziabad)">Raj Nagar Extension</option>
+                <option value="Raj Nagar (Ghaziabad)">Raj Nagar</option>
+                <option value="Kavi Nagar (Ghaziabad)">Kavi Nagar</option>
+                <option value="Vasundhara (Ghaziabad)">Vasundhara</option>
+                <option value="Indirapuram (Ghaziabad)">Indirapuram</option>
+                <option value="Vaishali (Ghaziabad)">Vaishali</option>
+                <option value="Crossings Republik (Ghaziabad)">Crossings Republik</option>
+                <option value="Noida Sector 62 / NCR Border">Noida Sector 62 / NCR</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="handoverMethod" class="form-label">Preferred Hand-over Method <span class="required">*</span></label>
+              <select id="handoverMethod" name="handoverMethod" class="form-control" required>
+                <option value="dropoff_at_ngo">I will drop off at KIET Desk or Partner NGO</option>
+                <option value="donor_delivery">I can deliver to nearby receiver</option>
+                <option value="volunteer_pickup">Request Volunteer Pickup (Campus only)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="pickupAddress" class="form-label">Pickup / Drop-off Landmark Address <span class="required">*</span></label>
+            <input type="text" id="pickupAddress" name="pickupAddress" class="form-control" placeholder="e.g. Hostel Block B, KIET Campus OR Sector 4 Market" required>
+            <div class="form-helper">Exact address is kept private and shared only after admin approves the receiver match.</div>
+          </div>
+
+          <!-- Photo Upload Area -->
+          <div class="form-group">
+            <label class="form-label">Packaging Photo (Visible Expiry &amp; Batch No.) <span class="required">*</span></label>
+            <div class="file-dropzone" id="dropzone" tabindex="0" role="button" aria-label="Upload packaging photo">
+              <div style="font-size:36px; margin-bottom:8px;">📸</div>
+              <div style="font-weight:600; color:var(--color-midnight-navy); margin-bottom:4px;">
+                Drag &amp; drop packaging image, or <span style="color:var(--color-medical-teal); text-decoration:underline;">browse files</span>
+              </div>
+              <div style="font-size:12px; color:var(--color-text-muted);">
+                Supported formats: JPG, PNG, WebP &bull; Maximum file size: 2 MB
+              </div>
+              <input type="file" id="photo" name="photo" accept="image/jpeg,image/png,image/webp" style="display:none;" required>
+            </div>
+            <div id="file-chosen-name" style="margin-top:8px; font-size:13px; font-weight:600; color:var(--color-medical-teal);"></div>
+            <div class="file-preview" id="image-preview-container">
+              <img id="image-preview" src="#" alt="Packaging photo preview" style="width:100%; height:auto;">
+            </div>
+          </div>
+
+          <!-- Safety Declarations -->
+          <div style="background:var(--color-cloud-white); padding:20px; border-radius:var(--radius-md); border:1px solid var(--color-border); margin-bottom:24px;">
+            <div class="form-group" style="margin-bottom:12px;">
+              <label class="form-checkbox-label">
+                <input type="checkbox" id="sealedPackaging" name="sealedPackaging" required checked>
+                <span><strong>I certify that the packaging is original, sealed, undamaged, and has NOT been opened or partially used.</strong></span>
+              </label>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-checkbox-label">
+                <input type="checkbox" id="safetyDeclaration" required checked>
+                <span>I confirm this medicine does not require refrigeration (e.g. Insulin), is not a narcotic/controlled drug, and has been stored in a cool, dry place.</span>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full btn-lg" id="submit-btn">
+            Submit Medicine for Safety Verification
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { API } from '/js/api.js';
+    import { requireAuth, setupNavbar } from '/js/auth.js';
+    import { showToast, applyAccessibilitySettings } from '/js/ui.js';
+    import { checkExpiryShelfLife, clearFormErrors, setFieldError } from '/js/validation.js';
+
+    let currentUser = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      currentUser = await requireAuth();
+      if (!currentUser) return;
+      setupNavbar(currentUser);
+      if (currentUser.settings) applyAccessibilitySettings(currentUser.settings);
+
+      // Pre-fill user locality if available
+      if (currentUser.locality) {
+        const localitySelect = document.getElementById('locality');
+        for (let opt of localitySelect.options) {
+          if (opt.value.includes(currentUser.locality) || currentUser.locality.includes(opt.value)) {
+            opt.selected = true;
+            break;
+          }
+        }
+      }
+
+      setupPhotoUpload();
+      setupExpiryListener();
+    });
+
+    function setupPhotoUpload() {
+      const dropzone = document.getElementById('dropzone');
+      const fileInput = document.getElementById('photo');
+      const chosenName = document.getElementById('file-chosen-name');
+      const previewContainer = document.getElementById('image-preview-container');
+      const previewImg = document.getElementById('image-preview');
+
+      dropzone.addEventListener('click', () => fileInput.click());
+      dropzone.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          fileInput.click();
+        }
+      });
+
+      ['dragenter', 'dragover'].forEach(name => {
+        dropzone.addEventListener(name, (e) => {
+          e.preventDefault();
+          dropzone.classList.add('dragover');
+        });
+      });
+
+      ['dragleave', 'drop'].forEach(name => {
+        dropzone.addEventListener(name, (e) => {
+          e.preventDefault();
+          dropzone.classList.remove('dragover');
+        });
+      });
+
+      dropzone.addEventListener('drop', (e) => {
+        if (e.dataTransfer.files.length) {
+          fileInput.files = e.dataTransfer.files;
+          handleFile(fileInput.files[0]);
+        }
+      });
+
+      fileInput.addEventListener('change', () => {
+        if (fileInput.files.length) {
+          handleFile(fileInput.files[0]);
+        }
+      });
+
+      function handleFile(file) {
+        if (!file) return;
+        if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+          showToast('Only JPG, PNG, and WebP images are supported', 'error');
+          fileInput.value = '';
+          return;
+        }
+        if (file.size > 2 * 1024 * 1024) {
+          showToast('Image file size exceeds 2 MB limit', 'error');
+          fileInput.value = '';
+          return;
+        }
+
+        chosenName.textContent = `Selected: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          previewImg.src = e.target.result;
+          previewContainer.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function setupExpiryListener() {
+      const expiryInput = document.getElementById('expiryDate');
+      const feedback = document.getElementById('expiry-feedback');
+
+      expiryInput.addEventListener('change', () => {
+        const result = checkExpiryShelfLife(expiryInput.value, 90);
+        if (!result.isValid) {
+          feedback.style.color = 'var(--color-danger)';
+          feedback.textContent = result.message;
+        } else {
+          feedback.style.color = 'var(--color-fresh-mint-dark)';
+          feedback.textContent = `✓ Sufficient shelf life (${result.diffDays} days remaining)`;
+        }
+      });
+    }
+
+    // Form Submission
+    const form = document.getElementById('donation-form');
+    const submitBtn = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearFormErrors(form);
+
+      const medicineName = document.getElementById('medicineName').value.trim();
+      const genericName = document.getElementById('genericName').value.trim();
+      const expiryDate = document.getElementById('expiryDate').value;
+      const photoFile = document.getElementById('photo').files[0];
+      const sealedPackaging = document.getElementById('sealedPackaging').checked;
+      const safetyDeclaration = document.getElementById('safetyDeclaration').checked;
+
+      let valid = true;
+
+      if (!medicineName) {
+        setFieldError(document.getElementById('medicineName'), 'Medicine brand name is required');
+        valid = false;
+      }
+      if (!genericName) {
+        setFieldError(document.getElementById('genericName'), 'Generic composition is required');
+        valid = false;
+      }
+      if (!sealedPackaging || !safetyDeclaration) {
+        showToast('You must certify original sealed packaging and safety declarations', 'warning');
+        valid = false;
+      }
+
+      const expiryCheck = checkExpiryShelfLife(expiryDate, 90);
+      if (!expiryCheck.isValid) {
+        setFieldError(document.getElementById('expiryDate'), expiryCheck.message);
+        valid = false;
+      }
+
+      if (!photoFile) {
+        showToast('Please upload a clear packaging photo for safety verification', 'error');
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Verifying and Submitting...';
+
+      const formData = new FormData(form);
+      formData.set('sealedPackaging', 'true');
+
+      try {
+        const res = await API.donations.create(formData);
+        showToast(res.message || 'Donation submitted for safety verification!', 'success');
+        setTimeout(() => {
+          window.location.href = '/pages/dashboard.html';
+        }, 1000);
+      } catch (err) {
+        showToast(err.message || 'Submission failed. Please check safety requirements.', 'error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Medicine for Safety Verification';
+      }
+    });
+  </script>
+</body>
+</html>

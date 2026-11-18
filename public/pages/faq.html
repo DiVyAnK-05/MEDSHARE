@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequently Asked Questions | MedShare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container navbar">
+      <a href="/index.html" class="brand-logo">
+        <div class="brand-icon-box" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+            <path d="m8.5 8.5 7 7"/>
+          </svg>
+        </div>
+        <span>MedShare</span>
+      </a>
+
+      <nav class="nav-menu" id="main-nav-links">
+        <a href="/pages/browse.html" class="nav-link">Find Medicine</a>
+        <a href="/pages/donate.html" class="nav-link">Donate Medicine</a>
+        <a href="/pages/safety.html" class="nav-link">Safety Rules</a>
+        <a href="/pages/faq.html" class="nav-link active">FAQ</a>
+      </nav>
+
+      <div class="nav-actions" id="navbar-auth-actions"></div>
+    </div>
+  </header>
+
+  <main id="main-content" class="section-padding">
+    <div class="container" style="max-width: 840px;">
+      <div style="text-align:center; margin-bottom:48px;">
+        <span class="badge badge-pending" style="margin-bottom:8px;">Help &amp; Answers</span>
+        <h1 style="font-size:var(--font-size-3xl); margin-bottom:12px;">Frequently Asked Questions</h1>
+        <p style="font-size:var(--font-size-base); color:var(--color-text-muted);">
+          Everything you need to know about donating, requesting, and safety compliance on MedShare.
+        </p>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <!-- Q1 -->
+        <div class="card" style="padding:24px;">
+          <h2 style="font-size:18px; color:var(--color-midnight-navy); margin-bottom:8px;">Can I donate partially used strips or cut tablets?</h2>
+          <p style="font-size:14px; color:var(--color-text-muted); line-height:1.6;">
+            <strong>No.</strong> MedShare enforces a zero-tolerance policy against opened packaging. Only full, original, uncut sealed blister strips or factory-sealed bottles with visible batch numbers and expiration dates can be accepted to eliminate contamination risks.
+          </p>
+        </div>
+
+        <!-- Q2 -->
+        <div class="card" style="padding:24px;">
+          <h2 style="font-size:18px; color:var(--color-midnight-navy); margin-bottom:8px;">Why is there a 90-day minimum shelf-life requirement?</h2>
+          <p style="font-size:14px; color:var(--color-text-muted); line-height:1.6;">
+            Verifying the medicine, matching it with an in-need community member, and coordinating drop-off at an NGO desk takes time. A 90-day buffer ensures the recipient has ample time to complete their full treatment course safely before the medicine reaches its manufacturer expiration.
+          </p>
+        </div>
+
+        <!-- Q3 -->
+        <div class="card" style="padding:24px;">
+          <h2 style="font-size:18px; color:var(--color-midnight-navy); margin-bottom:8px;">Are medicines free for receivers?</h2>
+          <p style="font-size:14px; color:var(--color-text-muted); line-height:1.6;">
+            <strong>Yes, 100% free.</strong> MedShare is a humanitarian platform. Neither donors nor receivers are ever charged, and buying or selling donated medicines is strictly prohibited and leads to immediate account termination and legal reporting.
+          </p>
+        </div>
+
+        <!-- Q4 -->
+        <div class="card" style="padding:24px;">
+          <h2 style="font-size:18px; color:var(--color-midnight-navy); margin-bottom:8px;">Where are the physical collection points in Ghaziabad?</h2>
+          <p style="font-size:14px; color:var(--color-text-muted); line-height:1.6;">
+            Our primary pilot drop-off desk is at <strong>KIET Group of Institutions (Muradnagar, Ghaziabad)</strong> at the Main Gate Reception Desk. Additional community collection desks operate at partner centers such as Pehchaan Care Foundation in Raj Nagar Extension and Vasundhara Sector 10 Dispensary.
+          </p>
+        </div>
+
+        <!-- Q5 -->
+        <div class="card" style="padding:24px;">
+          <h2 style="font-size:18px; color:var(--color-midnight-navy); margin-bottom:8px;">Is my personal phone number or address visible to the public?</h2>
+          <p style="font-size:14px; color:var(--color-text-muted); line-height:1.6;">
+            <strong>No.</strong> Your privacy is protected by default. Public visitors can only see the medicine name, quantity, category, and broad locality (e.g. KIET Campus). Exact donor contact details are never exposed publicly and are shared only after an admin verifies the match.
+          </p>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:40px;">
+        <p style="font-size:14px; color:var(--color-text-muted); margin-bottom:12px;">Have more questions not answered here?</p>
+        <a href="/pages/contact.html" class="btn btn-outline-teal">Contact our Project Team &rarr;</a>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { getCurrentUser, setupNavbar } from '/js/auth.js';
+    import { applyAccessibilitySettings } from '/js/ui.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await getCurrentUser();
+      setupNavbar(user);
+      if (user?.settings) applyAccessibilitySettings(user.settings);
+    });
+  </script>
+</body>
+</html>

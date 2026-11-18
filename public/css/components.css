@@ -1,0 +1,916 @@
+/**
+ * MedShare - Reusable Component Library
+ */
+
+/* ==========================================================================
+   1. LADDER TASKBAR (LEFT SIDEBAR NAVIGATION)
+   ========================================================================== */
+.site-header {
+  background-color: var(--color-deep-slate);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 280px;
+  height: 100vh;
+  z-index: 1000;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 4px 0 24px rgba(11, 31, 42, 0.18);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Custom Sleek Scrollbar for Ladder Sidebar */
+.site-header::-webkit-scrollbar {
+  width: 5px;
+}
+.site-header::-webkit-scrollbar-track {
+  background: transparent;
+}
+.site-header::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+.site-header::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  height: 100%;
+  min-height: 100vh;
+  padding: 24px 18px;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.brand-logo:hover {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.brand-icon-box {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--color-medical-teal), #16a2af);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(14, 124, 134, 0.35);
+  flex-shrink: 0;
+}
+
+.brand-badge {
+  font-size: 0.65rem;
+  background: var(--color-amber-light);
+  color: var(--color-amber-dark);
+  border: 1px solid var(--color-amber);
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Ladder Navigation Spine & Track */
+.ladder-nav-header {
+  font-size: 11px;
+  font-weight: 700;
+  color: #8BA0AA;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  padding-left: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 4px;
+  width: 100%;
+  margin: 0;
+  padding-left: 6px;
+  position: relative;
+  flex-grow: 1;
+}
+
+/* Vertical Ladder Rail (Spine) */
+.nav-menu::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 1px;
+  pointer-events: none;
+}
+
+/* Ladder Rung Item */
+.nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px 10px 34px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: #cbd5e1;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+/* Circular Rung Connector on the Vertical Rail */
+.nav-link::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  border: 2px solid var(--color-deep-slate);
+  transition: all var(--transition-fast);
+  z-index: 2;
+}
+
+.nav-link .ladder-icon {
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  flex-shrink: 0;
+}
+
+.nav-link .ladder-label {
+  flex-grow: 1;
+  white-space: nowrap;
+}
+
+/* Hover State on Rung */
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  text-decoration: none;
+  transform: translateX(3px);
+}
+
+.nav-link:hover::before {
+  background-color: var(--color-medical-teal);
+  border-color: #ffffff;
+  box-shadow: 0 0 8px var(--color-medical-teal);
+}
+
+/* Active Ladder Rung */
+.nav-link.active {
+  background: linear-gradient(90deg, rgba(14, 124, 134, 0.5), rgba(74, 222, 156, 0.15));
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: inset 0 0 0 1px rgba(74, 222, 156, 0.3);
+}
+
+.nav-link.active::before {
+  background-color: var(--color-fresh-mint);
+  border-color: #ffffff;
+  box-shadow: 0 0 12px var(--color-fresh-mint);
+  width: 10px;
+  height: 10px;
+  left: 10px;
+}
+
+/* Bottom of Ladder Taskbar (User / Auth Actions) */
+.nav-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+/* Mobile Responsiveness for Ladder Taskbar */
+@media (max-width: 991px) {
+  .site-header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 68px;
+    background-color: var(--color-deep-slate);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-sm);
+    overflow: visible;
+  }
+
+  .navbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    min-height: auto;
+    padding: 0 20px;
+  }
+
+  .brand-logo {
+    padding-bottom: 0;
+    border-bottom: none;
+    margin-bottom: 0;
+    font-size: 20px;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Drawer Behavior on Mobile */
+  .nav-menu {
+    display: none;
+  }
+
+  .nav-actions {
+    display: none;
+  }
+
+  body.mobile-drawer-open .nav-menu,
+  body.mobile-drawer-open .nav-actions {
+    display: flex;
+  }
+
+  body.mobile-drawer-open .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--color-deep-slate);
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 24px 18px;
+    z-index: 2000;
+    box-shadow: var(--shadow-lg);
+    overflow-y: auto;
+  }
+
+  body.mobile-drawer-open::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(11, 31, 42, 0.6);
+    backdrop-filter: blur(3px);
+    z-index: 1999;
+  }
+}
+
+/* ==========================================================================
+   2. BUTTONS
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  padding: 12px 22px;
+  min-height: 44px; /* Accessible Touch Target */
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-primary {
+  background-color: var(--color-medical-teal);
+  color: #ffffff;
+  border-color: var(--color-medical-teal);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-medical-teal-hover);
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-midnight-navy);
+  border-color: var(--color-border);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-cloud-white);
+  border-color: var(--color-text-muted);
+}
+
+.btn-success {
+  background-color: var(--color-fresh-mint);
+  color: var(--color-midnight-navy);
+  font-weight: 700;
+}
+
+.btn-success:hover {
+  background-color: #38c886;
+}
+
+.btn-outline-teal {
+  background-color: transparent;
+  color: var(--color-medical-teal);
+  border-color: var(--color-medical-teal);
+}
+
+.btn-outline-teal:hover {
+  background-color: var(--color-medical-teal-light);
+}
+
+.btn-danger {
+  background-color: var(--color-danger);
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background-color: #dc2626;
+}
+
+.btn-sm {
+  padding: 8px 14px;
+  font-size: var(--font-size-xs);
+  min-height: 36px;
+}
+
+.btn-lg {
+  padding: 16px 28px;
+  font-size: var(--font-size-lg);
+  min-height: 52px;
+  border-radius: var(--radius-lg);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* ==========================================================================
+   3. CARDS & SURFACES
+   ========================================================================== */
+.card {
+  background-color: var(--color-card-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+/* Medicine Card */
+.med-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+.med-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-medical-teal);
+}
+
+.med-card-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background-color: var(--color-cloud-white);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.med-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.med-card:hover .med-card-img {
+  transform: scale(1.04);
+}
+
+.med-card-badge-top {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.med-card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.med-card-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-midnight-navy);
+  margin-bottom: 6px;
+}
+
+.med-card-generic {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+  font-style: italic;
+}
+
+.med-meta-list {
+  list-style: none;
+  margin-top: auto;
+  padding: 12px 0;
+  border-top: 1px dashed var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: var(--font-size-xs);
+}
+
+.med-meta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-text-muted);
+}
+
+.med-meta-item strong {
+  color: var(--color-midnight-navy);
+}
+
+/* ==========================================================================
+   4. STATUS BADGES
+   ========================================================================== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.badge-verified {
+  background-color: var(--color-fresh-mint-light);
+  color: var(--color-fresh-mint-dark);
+  border: 1px solid var(--color-fresh-mint);
+}
+
+.badge-pending {
+  background-color: var(--color-cloud-white);
+  color: var(--color-deep-slate);
+  border: 1px solid var(--color-border);
+}
+
+.badge-matched {
+  background-color: var(--color-medical-teal-light);
+  color: var(--color-medical-teal);
+  border: 1px solid var(--color-medical-teal);
+}
+
+.badge-handed-over {
+  background-color: #f1f5f9;
+  color: var(--color-deep-slate);
+  border: 1px solid #cbd5e1;
+}
+
+.badge-rejected {
+  background-color: var(--color-danger-light);
+  color: var(--color-danger);
+  border: 1px solid #fca5a5;
+}
+
+.badge-amber {
+  background-color: var(--color-amber-light);
+  color: var(--color-amber-dark);
+  border: 1px solid var(--color-amber);
+}
+
+/* ==========================================================================
+   5. ALERT BANNERS & NOTICES
+   ========================================================================== */
+.alert-banner {
+  display: flex;
+  gap: 16px;
+  padding: 18px 24px;
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
+  align-items: flex-start;
+}
+
+.alert-amber {
+  background-color: var(--color-amber-light);
+  border: 1px solid var(--color-amber);
+  color: var(--color-midnight-navy);
+}
+
+.alert-info {
+  background-color: var(--color-medical-teal-light);
+  border: 1px solid var(--color-medical-teal);
+  color: var(--color-midnight-navy);
+}
+
+.alert-danger {
+  background-color: var(--color-danger-light);
+  border: 1px solid var(--color-danger);
+  color: #7f1d1d;
+}
+
+.alert-success {
+  background-color: var(--color-fresh-mint-light);
+  border: 1px solid var(--color-fresh-mint);
+  color: var(--color-fresh-mint-dark);
+}
+
+/* ==========================================================================
+   6. FORM CONTROLS
+   ========================================================================== */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-midnight-navy);
+  margin-bottom: 8px;
+}
+
+.form-label .required {
+  color: var(--color-danger);
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 16px;
+  min-height: 46px;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  color: var(--color-midnight-navy);
+  background-color: #ffffff;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-control:focus {
+  border-color: var(--color-medical-teal);
+  box-shadow: 0 0 0 3px rgba(14, 124, 134, 0.15);
+  outline: none;
+}
+
+.form-control.is-invalid {
+  border-color: var(--color-danger);
+}
+
+.invalid-feedback {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-danger);
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.form-helper {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: 6px;
+}
+
+/* Custom Checkbox */
+.form-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  color: var(--color-midnight-navy);
+  line-height: 1.5;
+}
+
+.form-checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--color-medical-teal);
+}
+
+/* File Upload Area */
+.file-dropzone {
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 32px 20px;
+  text-align: center;
+  background-color: #ffffff;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.file-dropzone:hover, .file-dropzone.dragover {
+  border-color: var(--color-medical-teal);
+  background-color: var(--color-medical-teal-light);
+}
+
+.file-preview {
+  margin-top: 16px;
+  max-width: 220px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  display: none;
+}
+
+/* ==========================================================================
+   7. MODAL DIALOGS
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(11, 31, 42, 0.65);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-dialog {
+  background-color: #ffffff;
+  border-radius: var(--radius-xl);
+  max-width: 550px;
+  width: 100%;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  animation: modalFadeIn 0.25s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.96) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-header {
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.modal-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--color-text-muted);
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  background-color: var(--color-cloud-white);
+}
+
+/* ==========================================================================
+   8. TOAST NOTIFICATIONS
+   ========================================================================== */
+.toast-container {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 380px;
+}
+
+.toast {
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  background: #ffffff;
+  border-left: 5px solid var(--color-medical-teal);
+  color: var(--color-midnight-navy);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  animation: toastSlide 0.3s ease-out;
+}
+
+@keyframes toastSlide {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.toast-success { border-left-color: var(--color-fresh-mint); }
+.toast-error { border-left-color: var(--color-danger); }
+.toast-warning { border-left-color: var(--color-amber); }
+
+/* ==========================================================================
+   9. FOOTER
+   ========================================================================== */
+.site-footer {
+  background-color: var(--color-midnight-navy);
+  color: #ffffff;
+  padding: 64px 0 24px 0;
+  margin-top: auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+@media (max-width: 992px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-col h4 {
+  color: #ffffff;
+  font-size: var(--font-size-lg);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.footer-col h4::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 32px;
+  height: 2px;
+  background-color: var(--color-medical-teal);
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links a {
+  color: #b0c4de;
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--color-fresh-mint);
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: var(--font-size-xs);
+  color: #8BA0AA;
+}
+
+.footer-disclaimer-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  margin-bottom: 32px;
+  font-size: var(--font-size-xs);
+  color: #c9d7de;
+  line-height: 1.6;
+}

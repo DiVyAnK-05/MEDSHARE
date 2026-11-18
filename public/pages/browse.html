@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Verified Medicines | MedShare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container navbar">
+      <a href="/index.html" class="brand-logo">
+        <div class="brand-icon-box" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+            <path d="m8.5 8.5 7 7"/>
+          </svg>
+        </div>
+        <span>MedShare</span>
+      </a>
+
+      <nav class="nav-menu" id="main-nav-links">
+        <a href="/pages/browse.html" class="nav-link active">Find Medicine</a>
+        <a href="/pages/donate.html" class="nav-link">Donate Medicine</a>
+        <a href="/pages/ngo-partners.html" class="nav-link">NGO Partners</a>
+        <a href="/pages/safety.html" class="nav-link">Safety Rules</a>
+      </nav>
+
+      <div class="nav-actions" id="navbar-auth-actions"></div>
+    </div>
+  </header>
+
+  <main id="main-content" class="section-padding">
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; margin-bottom:28px;">
+        <div>
+          <span class="badge badge-verified" style="margin-bottom:8px;">Live Community Inventory</span>
+          <h1 style="font-size:var(--font-size-3xl);">Available Verified Medicines</h1>
+          <p style="font-size:var(--font-size-sm); color:var(--color-text-muted);">
+            All medicines listed here have passed our safety, shelf-life, and packaging audits.
+          </p>
+        </div>
+        <div>
+          <a href="/pages/donate.html" class="btn btn-primary">
+            <span>+</span> Donate Medicine
+          </a>
+        </div>
+      </div>
+
+      <!-- Search & Sort Topbar -->
+      <div class="card" style="padding:16px 20px; margin-bottom:28px;">
+        <div style="display:grid; grid-template-columns:1fr 220px auto; gap:16px; align-items:center;">
+          <div>
+            <input type="text" id="search-input" class="form-control" placeholder="Search by medicine name or generic salt (e.g. Paracetamol, Azithromycin)...">
+          </div>
+          <div>
+            <select id="sort-select" class="form-control">
+              <option value="expiry_asc">Expiring Soonest First</option>
+              <option value="newest">Newly Listed First</option>
+              <option value="quantity_desc">Highest Quantity</option>
+              <option value="name_asc">Name (A-Z)</option>
+            </select>
+          </div>
+          <div>
+            <button id="btn-search" class="btn btn-primary" style="min-width:110px;">Search</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layout: Filter Sidebar + Medicine Grid -->
+      <div class="browse-layout">
+        <!-- Sidebar Filters -->
+        <aside class="filter-sidebar" role="region" aria-label="Medicine filters">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <h2 class="filter-title" style="margin-bottom:0;">Filter Medicines</h2>
+            <button id="btn-reset-filters" style="background:none; border:none; color:var(--color-medical-teal); font-size:12px; cursor:pointer; font-weight:600;">Reset All</button>
+          </div>
+
+          <!-- Category Filter -->
+          <div class="filter-section">
+            <label for="filter-category" class="form-label" style="font-size:13px;">Therapeutic Category</label>
+            <select id="filter-category" class="form-control" style="font-size:13px; padding:8px 12px;">
+              <option value="All">All Categories</option>
+              <option value="Pain Relief & Analgesics">Pain Relief &amp; Analgesics</option>
+              <option value="Antibiotics">Antibiotics</option>
+              <option value="Vitamins & Supplements">Vitamins &amp; Supplements</option>
+              <option value="First Aid & Antiseptics">First Aid &amp; Antiseptics</option>
+              <option value="Respiratory & Allergy">Respiratory &amp; Allergy</option>
+              <option value="Gastrointestinal">Gastrointestinal</option>
+              <option value="Cardiovascular & Hypertension">Cardiovascular</option>
+              <option value="Dermatological / Skin Care">Skin &amp; Dermatology</option>
+            </select>
+          </div>
+
+          <!-- Locality Filter -->
+          <div class="filter-section">
+            <label for="filter-locality" class="form-label" style="font-size:13px;">Locality / Campus</label>
+            <select id="filter-locality" class="form-control" style="font-size:13px; padding:8px 12px;">
+              <option value="All">All Areas in Ghaziabad</option>
+              <option value="KIET">KIET Campus (Muradnagar)</option>
+              <option value="Muradnagar">Muradnagar Town</option>
+              <option value="Raj Nagar">Raj Nagar / Extension</option>
+              <option value="Vasundhara">Vasundhara</option>
+              <option value="Indirapuram">Indirapuram</option>
+              <option value="Vaishali">Vaishali</option>
+            </select>
+          </div>
+
+          <div style="background:var(--color-cloud-white); padding:14px; border-radius:var(--radius-md); font-size:12px; color:var(--color-text-muted);">
+            💡 <strong>Need urgent assistance?</strong> Receivers can request medicines for self or family. Matches are coordinated through verified NGOs.
+          </div>
+        </aside>
+
+        <!-- Medicine Results Section -->
+        <section>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <div id="results-count" style="font-size:14px; font-weight:600; color:var(--color-midnight-navy);">
+              Loading available medicines...
+            </div>
+          </div>
+
+          <div id="medicine-grid-container" class="medicine-grid">
+            <!-- Medicine cards injected dynamically -->
+          </div>
+
+          <!-- Pagination -->
+          <div id="pagination-container" style="display:flex; justify-content:center; gap:8px; margin-top:40px;">
+            <!-- Injected dynamically -->
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { API } from '/js/api.js';
+    import { getCurrentUser, setupNavbar } from '/js/auth.js';
+    import { applyAccessibilitySettings } from '/js/ui.js';
+
+    let currentPage = 1;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const user = await getCurrentUser();
+      setupNavbar(user);
+      if (user?.settings) applyAccessibilitySettings(user.settings);
+
+      // Check URL query parameters (e.g. from search inputs on other pages)
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('search')) {
+        document.getElementById('search-input').value = params.get('search');
+      }
+      if (params.get('category')) {
+        document.getElementById('filter-category').value = params.get('category');
+      }
+
+      loadMedicines();
+
+      // Event listeners
+      document.getElementById('btn-search').addEventListener('click', () => {
+        currentPage = 1;
+        loadMedicines();
+      });
+      document.getElementById('search-input').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          currentPage = 1;
+          loadMedicines();
+        }
+      });
+      document.getElementById('sort-select').addEventListener('change', () => {
+        currentPage = 1;
+        loadMedicines();
+      });
+      document.getElementById('filter-category').addEventListener('change', () => {
+        currentPage = 1;
+        loadMedicines();
+      });
+      document.getElementById('filter-locality').addEventListener('change', () => {
+        currentPage = 1;
+        loadMedicines();
+      });
+      document.getElementById('btn-reset-filters').addEventListener('click', () => {
+        document.getElementById('search-input').value = '';
+        document.getElementById('filter-category').value = 'All';
+        document.getElementById('filter-locality').value = 'All';
+        document.getElementById('sort-select').value = 'expiry_asc';
+        currentPage = 1;
+        loadMedicines();
+      });
+    });
+
+    async function loadMedicines() {
+      const grid = document.getElementById('medicine-grid-container');
+      const countEl = document.getElementById('results-count');
+      const paginationEl = document.getElementById('pagination-container');
+
+      const search = document.getElementById('search-input').value.trim();
+      const category = document.getElementById('filter-category').value;
+      const locality = document.getElementById('filter-locality').value;
+      const sortBy = document.getElementById('sort-select').value;
+
+      grid.innerHTML = `<div style="grid-column: 1 / -1; text-align:center; padding:48px 0; color:var(--color-text-muted);">Finding verified medicines...</div>`;
+
+      try {
+        const res = await API.medicines.getAll({
+          search,
+          category,
+          locality,
+          sortBy,
+          page: currentPage,
+          limit: 9
+        });
+
+        const medicines = res.data?.medicines || [];
+        const total = res.pagination?.totalCount || 0;
+        const totalPages = res.pagination?.totalPages || 1;
+
+        countEl.textContent = `Showing ${medicines.length} of ${total} verified medicine${total === 1 ? '' : 's'}`;
+
+        if (medicines.length === 0) {
+          grid.innerHTML = `
+            <div style="grid-column: 1 / -1;" class="card">
+              <div style="text-align:center; padding:48px 24px;">
+                <div style="font-size:48px; margin-bottom:12px;">🔍</div>
+                <h3 style="margin-bottom:8px;">No matching medicines found</h3>
+                <p style="margin-bottom:20px; font-size:14px;">Try broadening your search term or resetting your category filter.</p>
+                <button id="btn-clear-search-empty" class="btn btn-outline-teal">Reset All Filters</button>
+              </div>
+            </div>
+          `;
+          document.getElementById('btn-clear-search-empty')?.addEventListener('click', () => {
+            document.getElementById('btn-reset-filters').click();
+          });
+          paginationEl.innerHTML = '';
+          return;
+        }
+
+        let html = '';
+        const now = new Date();
+
+        medicines.forEach(m => {
+          const exp = new Date(m.expiryDate);
+          const diffDays = Math.ceil((exp - now) / (1000 * 60 * 60 * 24));
+          const expFormatted = exp.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+
+          const isExpiringSoon = diffDays < 120; // 4 months warning
+          const expiryBadgeClass = isExpiringSoon ? 'badge-amber' : 'badge-pending';
+          const expiryIcon = isExpiringSoon ? '⚠️' : '📅';
+
+          html += `
+            <div class="med-card">
+              <div class="med-card-img-wrapper">
+                <img src="${m.photoPath || '/assets/sample-med-1.svg'}" alt="${m.medicineName}" class="med-card-img" onerror="this.src='/assets/sample-med-1.svg'">
+                <div class="med-card-badge-top">
+                  <span class="badge badge-verified">✓ Verified</span>
+                </div>
+              </div>
+
+              <div class="med-card-body">
+                <div style="font-size:11px; font-weight:700; color:var(--color-medical-teal); text-transform:uppercase; margin-bottom:4px;">
+                  ${m.category}
+                </div>
+                <h3 class="med-card-title">${m.medicineName}</h3>
+                <p class="med-card-generic">${m.genericName}</p>
+
+                <ul class="med-meta-list">
+                  <li class="med-meta-item">
+                    <span>Available Quantity:</span>
+                    <strong>${m.availableQuantity} ${m.unit}</strong>
+                  </li>
+                  <li class="med-meta-item">
+                    <span>Expiry Date:</span>
+                    <span class="badge ${expiryBadgeClass}">
+                      ${expiryIcon} ${expFormatted} (${diffDays}d)
+                    </span>
+                  </li>
+                  <li class="med-meta-item">
+                    <span>Pickup Area:</span>
+                    <strong style="font-size:11px; max-width:140px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">📍 ${m.locality}</strong>
+                  </li>
+                </ul>
+
+                <div style="margin-top:16px;">
+                  <a href="/pages/medicine-detail.html?id=${m._id}" class="btn btn-primary btn-full btn-sm">
+                    View Details &amp; Request
+                  </a>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+        grid.innerHTML = html;
+
+        // Render Pagination buttons
+        let pageHtml = '';
+        if (totalPages > 1) {
+          for (let p = 1; p <= totalPages; p++) {
+            const active = p === currentPage ? 'btn-primary' : 'btn-secondary';
+            pageHtml += `<button class="btn ${active} btn-sm pagination-btn" data-page="${p}">${p}</button>`;
+          }
+        }
+        paginationEl.innerHTML = pageHtml;
+
+        paginationEl.querySelectorAll('.pagination-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            currentPage = Number(btn.dataset.page);
+            loadMedicines();
+            window.scrollTo({ top: 300, behavior: 'smooth' });
+          });
+        });
+
+      } catch (err) {
+        grid.innerHTML = `<div style="grid-column:1/-1;" class="alert-banner alert-danger">Error fetching medicines: ${err.message}</div>`;
+      }
+    }
+  </script>
+</body>
+</html>

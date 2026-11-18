@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility &amp; Settings | MedShare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container navbar">
+      <a href="/index.html" class="brand-logo">
+        <div class="brand-icon-box" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+            <path d="m8.5 8.5 7 7"/>
+          </svg>
+        </div>
+        <span>MedShare</span>
+      </a>
+
+      <nav class="nav-menu" id="main-nav-links">
+        <a href="/pages/dashboard.html" class="nav-link">Dashboard</a>
+        <a href="/pages/browse.html" class="nav-link">Find Medicine</a>
+        <a href="/pages/donate.html" class="nav-link">Donate</a>
+      </nav>
+
+      <div class="nav-actions" id="navbar-auth-actions"></div>
+    </div>
+  </header>
+
+  <main id="main-content" class="section-padding">
+    <div class="container" style="max-width: 680px;">
+      <h1 style="font-size:var(--font-size-3xl); margin-bottom:8px;">Accessibility &amp; Display Settings</h1>
+      <p style="font-size:var(--font-size-sm); color:var(--color-text-muted); margin-bottom:32px;">
+        Customize text scaling, visual contrast, and system notifications for your comfort.
+      </p>
+
+      <div class="card" style="padding:36px;">
+        <form id="settings-form">
+          <!-- Text Scaling -->
+          <div style="margin-bottom:28px; padding-bottom:24px; border-bottom:1px solid var(--color-border-subtle);">
+            <label for="textSize" class="form-label" style="font-size:16px;">Reading Text Size</label>
+            <p style="font-size:13px; color:var(--color-text-muted); margin-bottom:12px;">Scale fonts across all navigation bars, medicine cards, and forms.</p>
+            <select id="textSize" class="form-control" style="max-width:260px;">
+              <option value="normal">Standard (100%)</option>
+              <option value="large">Large (115%)</option>
+              <option value="x-large">Extra Large (130%)</option>
+            </select>
+          </div>
+
+          <!-- High Contrast Mode -->
+          <div style="margin-bottom:28px; padding-bottom:24px; border-bottom:1px solid var(--color-border-subtle);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+              <div>
+                <strong style="font-size:15px; display:block; margin-bottom:4px; color:var(--color-midnight-navy);">High Contrast Mode</strong>
+                <p style="font-size:13px; color:var(--color-text-muted);">Enforces solid black text on white backgrounds and deep borders for enhanced legibility.</p>
+              </div>
+              <label class="form-checkbox-label" style="margin-left:16px;">
+                <input type="checkbox" id="highContrast" style="width:22px; height:22px;">
+              </label>
+            </div>
+          </div>
+
+          <!-- Reduced Motion -->
+          <div style="margin-bottom:28px; padding-bottom:24px; border-bottom:1px solid var(--color-border-subtle);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+              <div>
+                <strong style="font-size:15px; display:block; margin-bottom:4px; color:var(--color-midnight-navy);">Reduced Motion</strong>
+                <p style="font-size:13px; color:var(--color-text-muted);">Disables animations, transitions, and transform effects across modals and cards.</p>
+              </div>
+              <label class="form-checkbox-label" style="margin-left:16px;">
+                <input type="checkbox" id="reducedMotion" style="width:22px; height:22px;">
+              </label>
+            </div>
+          </div>
+
+          <!-- Notifications -->
+          <div style="margin-bottom:32px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+              <div>
+                <strong style="font-size:15px; display:block; margin-bottom:4px; color:var(--color-midnight-navy);">Transactional Notification Alerts</strong>
+                <p style="font-size:13px; color:var(--color-text-muted);">Receive verification updates and community request alerts.</p>
+              </div>
+              <label class="form-checkbox-label" style="margin-left:16px;">
+                <input type="checkbox" id="emailNotifications" checked style="width:22px; height:22px;">
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg" id="btn-save-settings">
+            Save Preferences
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { API } from '/js/api.js';
+    import { requireAuth, setupNavbar, clearUserCache } from '/js/auth.js';
+    import { showToast, applyAccessibilitySettings } from '/js/ui.js';
+
+    let currentUser = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      currentUser = await requireAuth();
+      if (!currentUser) return;
+      setupNavbar(currentUser);
+
+      const settings = currentUser.settings || {};
+      applyAccessibilitySettings(settings);
+
+      // Set input values
+      if (settings.textSize) document.getElementById('textSize').value = settings.textSize;
+      document.getElementById('highContrast').checked = Boolean(settings.highContrast);
+      document.getElementById('reducedMotion').checked = Boolean(settings.reducedMotion);
+      document.getElementById('emailNotifications').checked = settings.emailNotifications !== false;
+
+      // Live preview changes
+      document.getElementById('textSize').addEventListener('change', (e) => {
+        applyAccessibilitySettings({ ...settings, textSize: e.target.value });
+      });
+      document.getElementById('highContrast').addEventListener('change', (e) => {
+        applyAccessibilitySettings({ ...settings, highContrast: e.target.checked });
+      });
+      document.getElementById('reducedMotion').addEventListener('change', (e) => {
+        applyAccessibilitySettings({ ...settings, reducedMotion: e.target.checked });
+      });
+
+      // Submit
+      document.getElementById('settings-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const updated = {
+          textSize: document.getElementById('textSize').value,
+          highContrast: document.getElementById('highContrast').checked,
+          reducedMotion: document.getElementById('reducedMotion').checked,
+          emailNotifications: document.getElementById('emailNotifications').checked
+        };
+
+        try {
+          const res = await API.users.updateSettings(updated);
+          showToast(res.message || 'Preferences saved to your account', 'success');
+          clearUserCache();
+          applyAccessibilitySettings(updated);
+        } catch (err) {
+          showToast(err.message || 'Error saving settings', 'error');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

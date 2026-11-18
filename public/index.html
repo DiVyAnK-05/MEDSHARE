@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MedShare | Community Medicine Redistribution Platform</title>
+  <meta name="description" content="MedShare connects households with unused, sealed, unexpired medicines to patients and NGOs in need across the KIET Ghaziabad region.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/pages.css">
+</head>
+<body>
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header & Navbar -->
+  <header class="site-header" role="banner">
+    <div class="container navbar">
+      <a href="/index.html" class="brand-logo" aria-label="MedShare Home">
+        <div class="brand-icon-box" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+            <path d="m8.5 8.5 7 7"/>
+          </svg>
+        </div>
+        <span>MedShare</span>
+      </a>
+
+      <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav class="nav-menu" id="main-nav-links" role="navigation" aria-label="Main Navigation">
+        <a href="/pages/browse.html" class="nav-link">Find Medicine</a>
+        <a href="/pages/verification.html" class="nav-link">How It Works</a>
+        <a href="/pages/ngo-partners.html" class="nav-link">NGO Partners</a>
+        <a href="/pages/safety.html" class="nav-link">Safety Rules</a>
+        <a href="/pages/about.html" class="nav-link">About Us</a>
+        <a href="/pages/contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions" id="navbar-auth-actions">
+        <!-- Injected dynamically via auth.js -->
+        <a href="/pages/login.html" class="btn btn-secondary btn-sm">Log In</a>
+        <a href="/pages/signup.html" class="btn btn-primary btn-sm">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero-tag">
+          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--color-fresh-mint); margin-right:4px;"></span>
+          Piloting at KIET Group of Institutions &bull; Ghaziabad, UP
+        </div>
+        <h1 id="hero-heading" class="hero-title">
+          Don't Waste Medicine.<br>
+          <span>Share It Responsibly.</span>
+        </h1>
+        <p class="hero-lead">
+          MedShare coordinates the safe, verified redistribution of sealed, unexpired medicines from households and students to verified local NGOs and families in need.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="/pages/donate.html" class="btn btn-primary btn-lg" id="hero-donate-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+            Donate Unused Medicine
+          </a>
+          <a href="/pages/browse.html" class="btn btn-secondary btn-lg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            Find Available Medicine
+          </a>
+        </div>
+
+        <!-- Live Impact Counters pulled from DB -->
+        <div class="impact-counters" aria-label="Platform Impact Statistics">
+          <div class="impact-counter-card">
+            <div class="impact-number" id="stat-medicines">42+</div>
+            <div class="impact-label">Medicines Redistributed</div>
+          </div>
+          <div class="impact-counter-card">
+            <div class="impact-number" id="stat-donors">18+</div>
+            <div class="impact-label">Active Student &amp; Resident Donors</div>
+          </div>
+          <div class="impact-counter-card">
+            <div class="impact-number" id="stat-beneficiaries">56+</div>
+            <div class="impact-label">Patients &amp; Receivers Supported</div>
+          </div>
+          <div class="impact-counter-card">
+            <div class="impact-number" id="stat-ngos">3</div>
+            <div class="impact-label">Verified NGO Partners</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Regulatory Notice Banner -->
+    <div class="container" style="margin-top: 24px;">
+      <div class="alert-banner alert-info" role="region" aria-label="Important Healthcare Notice">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="16" x2="12" y2="12"></line>
+          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>
+        <div>
+          <strong style="display:block; margin-bottom:4px; font-size:15px;">Safety &amp; Regulatory Compliance Note</strong>
+          <span style="font-size:14px; line-height:1.5;">
+            MedShare is a community coordination platform and does not provide medical advice or diagnosis. In compliance with Indian pharmaceutical standards, peer-to-peer distribution is routed through verified NGOs and licensed pharmacists. Never consume any medication without professional consultation.
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Problem & Solution -->
+    <section class="section-padding" style="background:#ffffff; border-top:1px solid var(--color-border); border-bottom:1px solid var(--color-border);" aria-labelledby="problem-heading">
+      <div class="container">
+        <div style="text-align:center; max-width:700px; margin:0 auto 48px auto;">
+          <h2 id="problem-heading" style="margin-bottom:16px;">Bridging the Healthcare Divide in Ghaziabad</h2>
+          <p>Every year, thousands of unexpired medicine strips are discarded after standard treatments, while nearby community members struggle with out-of-pocket healthcare expenses.</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:32px;">
+          <div class="card" style="border-left: 5px solid var(--color-danger);">
+            <h3 style="color:var(--color-danger); margin-bottom:12px; font-size:var(--font-size-xl);">The Critical Problem</h3>
+            <ul style="list-style:none; display:flex; flex-direction:column; gap:12px; font-size:14px; color:var(--color-text-muted);">
+              <li>❌ <strong>Household Medicine Waste:</strong> Up to 23% of purchased medicines expire in domestic medicine cabinets untouched.</li>
+              <li>❌ <strong>Environmental Contamination:</strong> Flushed or landfill-discarded medicines seep into soil and local waterways.</li>
+              <li>❌ <strong>High Out-of-Pocket Burden:</strong> Low-income households and students often delay vital treatments due to prescription costs.</li>
+            </ul>
+          </div>
+
+          <div class="card" style="border-left: 5px solid var(--color-fresh-mint);">
+            <h3 style="color:var(--color-medical-teal); margin-bottom:12px; font-size:var(--font-size-xl);">The MedShare Solution</h3>
+            <ul style="list-style:none; display:flex; flex-direction:column; gap:12px; font-size:14px; color:var(--color-text-muted);">
+              <li>✅ <strong>100% Sealed &amp; Verified:</strong> Every listing is examined by safety reviewers before appearing in the public catalogue.</li>
+              <li>✅ <strong>Zero-Cost Redistribution:</strong> Donated medicines are redistributed completely free to verified individuals and NGO clinics.</li>
+              <li>✅ <strong>Hyperlocal Drop Desks:</strong> Accessible collection points at KIET Campus and partner NGO centers in Ghaziabad.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section-padding" aria-labelledby="how-it-works-heading">
+      <div class="container">
+        <div style="text-align:center; max-width:700px; margin:0 auto 48px auto;">
+          <span class="badge badge-matched" style="margin-bottom:12px;">Simple &amp; Safe Process</span>
+          <h2 id="how-it-works-heading" style="margin-bottom:16px;">How MedShare Works</h2>
+          <p>A closed-loop safety protocol ensuring that only authentic, undamaged, and unexpired medications reach recipients.</p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3 style="font-size:var(--font-size-lg); margin-bottom:8px;">List Medicine</h3>
+            <p style="font-size:14px;">The donor enters medicine details, expiry date (&ge; 90 days), and uploads a photo of the original sealed blister pack.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3 style="font-size:var(--font-size-lg); margin-bottom:8px;">Safety Verification</h3>
+            <p style="font-size:14px;">Our verification team audits the batch number, sealed packaging, and verifies no controlled substances are listed.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3 style="font-size:var(--font-size-lg); margin-bottom:8px;">Community Request</h3>
+            <p style="font-size:14px;">Verified medicines appear in the browse directory. Registered receivers submit requests specifying their requirement.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <h3 style="font-size:var(--font-size-lg); margin-bottom:8px;">Safe Hand-Over</h3>
+            <p style="font-size:14px;">Donation is dropped off at a partner NGO desk or KIET Campus collection point for secure dispensing.</p>
+          </div>
+        </div>
+
+        <div style="text-align:center; margin-top:40px;">
+          <a href="/pages/verification.html" class="btn btn-outline-teal">Read Full Verification Standards &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pilot Area & Future Expansion Roadmap -->
+    <section class="section-padding" style="background:#ffffff; border-top:1px solid var(--color-border); border-bottom:1px solid var(--color-border);">
+      <div class="container">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
+          <div>
+            <span class="badge badge-amber" style="margin-bottom:12px;">Active Pilot Scope</span>
+            <h2 style="margin-bottom:20px;">KIET Ghaziabad Pilot &amp; Scalability Roadmap</h2>
+            <p style="margin-bottom:16px; font-size:15px;">
+              MedShare is deployed as an active pilot at the <strong>KIET Group of Institutions (Muradnagar, Ghaziabad)</strong>, leveraging campus hostels and local community networks across Raj Nagar Extension, Vasundhara, and Indirapuram.
+            </p>
+            <div style="display:flex; flex-direction:column; gap:16px; margin-top:24px;">
+              <div style="display:flex; gap:12px;">
+                <div style="width:28px; height:28px; border-radius:50%; background:var(--color-fresh-mint-light); color:var(--color-fresh-mint-dark); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px;">1</div>
+                <div>
+                  <strong style="color:var(--color-midnight-navy);">Phase 1 (Current): KIET &amp; Ghaziabad Pilot</strong>
+                  <p style="font-size:13px; margin-top:2px;">Campus student drop-off desks, partnered with Pehchaan Care Foundation.</p>
+                </div>
+              </div>
+              <div style="display:flex; gap:12px;">
+                <div style="width:28px; height:28px; border-radius:50%; background:var(--color-cloud-white); color:var(--color-deep-slate); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px;">2</div>
+                <div>
+                  <strong style="color:var(--color-midnight-navy);">Phase 2: Delhi NCR &amp; Western Uttar Pradesh</strong>
+                  <p style="font-size:13px; margin-top:2px;">Expansion to Noida, Greater Noida, and Meerut district health cooperatives.</p>
+                </div>
+              </div>
+              <div style="display:flex; gap:12px;">
+                <div style="width:28px; height:28px; border-radius:50%; background:var(--color-cloud-white); color:var(--color-deep-slate); display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px;">3</div>
+                <div>
+                  <strong style="color:var(--color-midnight-navy);">Phase 3: All-India NGO Medicine Mesh</strong>
+                  <p style="font-size:13px; margin-top:2px;">National network with smart GPS matching and pharmacy inventory synchronization.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:var(--color-cloud-white); padding:36px; border-radius:var(--radius-xl); border:1px solid var(--color-border);">
+            <h3 style="font-size:var(--font-size-xl); margin-bottom:16px; color:var(--color-deep-slate);">Are You an NGO or Pharmacy?</h3>
+            <p style="font-size:14px; margin-bottom:24px; color:var(--color-text-muted);">
+              Partner with MedShare to serve as an official collection and dispensing center. Receive verified donations directly for your community health clinics.
+            </p>
+            <a href="/pages/ngo-partners.html#apply" class="btn btn-primary btn-full">
+              Apply to Become a Partner NGO
+            </a>
+            <div style="margin-top:16px; text-align:center;">
+              <a href="/pages/safety.html" style="font-size:13px; color:var(--color-medical-teal);">Review NGO Handling Guidelines &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-disclaimer-box">
+        <strong>⚠️ Mandatory Medical Disclaimer:</strong> MedShare is a student-built college group project for demonstration and community welfare. It is not a licensed pharmacy, doctor, or manufacturer. Unopened and unexpired medicines must always be examined by a certified healthcare professional before administration.
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
+            <div class="brand-icon-box" style="width:36px; height:36px;" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+                <path d="m8.5 8.5 7 7"/>
+              </svg>
+            </div>
+            <span style="font-size:20px; font-weight:800; font-family:var(--font-heading); color:#ffffff;">MedShare</span>
+          </div>
+          <p style="font-size:13px; color:#b0c4de; line-height:1.6; margin-bottom:16px;">
+            Transforming surplus medicines into accessible lifelines. Developed for the KIET Group of Institutions &amp; Ghaziabad community.
+          </p>
+          <div style="font-size:12px; color:var(--color-fresh-mint); font-weight:600;">
+            College Group Project &bull; Divyank, Dhwani &amp; Drishti (KIET MCA)
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul class="footer-links">
+            <li><a href="/pages/browse.html">Find Medicine</a></li>
+            <li><a href="/pages/donate.html">Donate Medicine</a></li>
+            <li><a href="/pages/dashboard.html">User Dashboard</a></li>
+            <li><a href="/pages/ngo-partners.html">NGO Directory</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Safety &amp; Rules</h4>
+          <ul class="footer-links">
+            <li><a href="/pages/safety.html">Safety Guidelines</a></li>
+            <li><a href="/pages/verification.html">Verification Standards</a></li>
+            <li><a href="/pages/faq.html">Frequently Asked Questions</a></li>
+            <li><a href="/pages/privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Pilot Contact</h4>
+          <p style="font-size:13px; color:#b0c4de; margin-bottom:12px;">
+            KIET Group of Institutions<br>
+            Delhi-NCR, NH-58, Muradnagar,<br>
+            Ghaziabad, Uttar Pradesh 201206
+          </p>
+          <a href="/pages/contact.html" class="btn btn-outline-teal btn-sm" style="color:#ffffff; border-color:#ffffff;">
+            Contact Project Team
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 MedShare Project. All rights reserved. Built for community health.</div>
+        <div style="display:flex; gap:16px;">
+          <a href="/pages/settings.html" style="color:#b0c4de; text-decoration:none;">Accessibility Settings</a>
+          <a href="/pages/privacy.html" style="color:#b0c4de; text-decoration:none;">Privacy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { API } from '/js/api.js';
+    import { getCurrentUser, setupNavbar } from '/js/auth.js';
+    import { applyAccessibilitySettings, initMobileMenu } from '/js/ui.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      initMobileMenu();
+
+      // Check current session & update navigation
+      const user = await getCurrentUser();
+      setupNavbar(user);
+      if (user && user.settings) {
+        applyAccessibilitySettings(user.settings);
+      }
+
+      // Load live impact stats from server
+      try {
+        const res = await API.stats.getPublic();
+        if (res.success && res.data) {
+          document.getElementById('stat-medicines').textContent = `${res.data.medicinesRedistributed}+`;
+          document.getElementById('stat-donors').textContent = `${res.data.activeDonors}+`;
+          document.getElementById('stat-beneficiaries').textContent = `${res.data.beneficiariesServed}+`;
+          document.getElementById('stat-ngos').textContent = res.data.partnerNgos;
+        }
+      } catch (err) {
+        console.warn('Could not load live stats, using baseline counters:', err);
+      }
+    });
+  </script>
+</body>
+</html>
